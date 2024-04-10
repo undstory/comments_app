@@ -1,0 +1,42 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Comment {
+  id        String     @default(cuid()) @id
+  content   String?
+  score     Int @default(0)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+  replies   Reply[]
+}
+
+model Reply {
+  id        String     @default(cuid()) @id
+  content   String?
+  score     Int @default(0)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+  parent    Comment? @relation(fields: [parentId], references: [id])
+  parentId  String
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  username      String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  avatar        String
+  comments      Comment[]
+  replies       Reply[]
+  @@map(name: "users")
+}
