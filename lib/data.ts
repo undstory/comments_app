@@ -40,3 +40,27 @@ export const createNewComment = async (content: string, date: Date) => {
     console.log(error);
   }
 };
+
+export const removeComment = async (id: string, variant: string) => {
+  try {
+    if (variant === "comment") {
+      const deleteIt = await prisma.comment.delete({
+        where: {
+          id: id,
+        },
+      });
+
+      return deleteIt;
+    } else {
+      const deleteIt = await prisma.reply.delete({
+        where: {
+          id: id,
+        },
+      });
+
+      return deleteIt;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

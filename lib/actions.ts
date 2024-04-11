@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createNewComment } from "./data";
+import { createNewComment, removeComment } from "./data";
 import { revalidatePath } from "next/cache";
 import prisma from "./prisma";
 import { RefObject } from "react";
@@ -22,5 +22,10 @@ export async function createComment(formData: FormData) {
 
   await createNewComment(content, createdAt);
 
+  revalidatePath("/comments");
+}
+
+export async function deleteComment(id: string, variant: string) {
+  await removeComment(id, variant);
   revalidatePath("/comments");
 }
