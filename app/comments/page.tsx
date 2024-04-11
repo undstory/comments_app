@@ -1,20 +1,21 @@
 import { fetchComments, fetchReplies } from "@/lib/data";
 import Card from "../ui/comments/Card";
+import AddComment from "../ui/comments/AddComment";
+import { Comment } from "@/lib/types";
 
 export default async function Page() {
-    const comments = await fetchComments()
+    const comments = await fetchComments();
     const replies = await fetchReplies()
-    console.log("comments", comments);
-    console.log("replies", replies);
+
 
     return (
         <div>
             Comments qwqwqw
-            {comments.length ? comments.map((comment) => {
+            {comments && comments.length > 0 ? comments?.map((comment: Comment) => {
                 return (
                     <div key={comment.id}>
                         <Card variant="comment" comment={comment} />
-                        {replies.map((reply) => {
+                        {replies && replies.length && replies.map((reply) => {
                             if(reply.parentId === comment.id){
                                 return (
                                     <div key="reply.id">
@@ -30,6 +31,7 @@ export default async function Page() {
             }) : (
                 <div>Brak danych</div>
             )}
+            <AddComment />
         </div>
     );
 }

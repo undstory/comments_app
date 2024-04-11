@@ -8,7 +8,11 @@ export default async function Card({ comment, variant, reply}: {comment?: Commen
     const replyAuthorData = replyAuthorId && await fetchInfoAboutAuthor(replyAuthorId);
 
     return (
-        <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0}}>
+        <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0, backgroundColor: variant === "reply" ? `lightblue` : `lightpink`}}>
+            <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
+                <button>Reply</button>
+                <button>Delete</button>
+            </div>
             <div>{content || replyContent}</div>
             {
             variant === "comment" ? (
