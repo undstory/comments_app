@@ -12,27 +12,27 @@ datasource db {
 
 model Comment {
   id        String     @default(cuid()) @id
-  content   String?
+  content   String
   score     Int @default(0)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+  author    User   @relation(fields: [authorId], references: [id])
+  authorId  String
   replies   Reply[]
 }
 
 model Reply {
   id        String     @default(cuid()) @id
-  content   String?
+  content   String
   score     Int @default(0)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
-  parent    Comment? @relation(fields: [parentId], references: [id])
+  author    User   @relation(fields: [authorId], references: [id])
+  authorId  String
+  parent    Comment @relation(fields: [parentId], references: [id])
   parentId  String
 }
 
 model User {
   id            String       @default(cuid()) @id
-  username      String?
-  email         String?   @unique
+  username      String
+  email         String   @unique
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   avatar        String
