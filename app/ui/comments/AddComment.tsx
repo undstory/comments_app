@@ -8,7 +8,10 @@ const formRef = useRef<HTMLFormElement>(null)
 
     return (
         <div>
-            <form ref={formRef} action={createComment}>
+            <form ref={formRef} action={async (formData: FormData) => {
+                await createComment(formData);
+                formRef?.current?.reset(); }
+            }>
                 <textarea name="content"></textarea>
                 <button type="submit">Add comment</button>
             </form>

@@ -5,10 +5,13 @@ import { useRef } from "react";
 
 export default function AddReply({parentId}: {parentId: string}) {
 const formRef = useRef<HTMLFormElement>(null)
-const createNewReply = createReply.bind(null, parentId)
+
     return (
         <div>
-            <form ref={formRef} action={createNewReply}>
+            <form ref={formRef} action={async (formData: FormData) => {
+                await createReply(parentId, formData);
+                formRef?.current?.reset();}
+            }>
                 <textarea name="content"></textarea>
                 <button type="submit">Add reply</button>
             </form>
