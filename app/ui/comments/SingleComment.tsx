@@ -13,14 +13,23 @@ export default function SingleComment({ comment, commentReplies}: {comment?: Com
     // const { content: replyContent, id: replyId, parentId, authorId: replyAuthorId } = reply || {}
     // const authorData = authorId && await fetchInfoAboutAuthor(authorId);
     // const replyAuthorData = replyAuthorId && await fetchInfoAboutAuthor(replyAuthorId);
+    const [ replyForm, setReplyForm ] = useState<boolean>(false)
 
     return (
         <div>
-            <Card variant="comment" comment={comment} />
+            {/* comment?.id === commentId */}
+            <Card variant="comment" comment={comment} replyForm={replyForm} setReplyForm={setReplyForm} />
+            {replyForm ? (
+                <AddComment />
+            ) : null}
             <div>
                 {commentReplies && commentReplies.map((reply) => {
                     return (
-                        <Card key={reply.id} variant="reply" reply={reply} />
+                        <div key={reply.id} >
+                        <Card variant="reply" reply={reply}  />
+
+
+                        </div>
                     )
                 })}
             </div>
