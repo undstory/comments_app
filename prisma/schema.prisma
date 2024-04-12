@@ -14,7 +14,7 @@ model Comment {
   id        String     @default(cuid()) @id
   content   String
   score     Int @default(0)
-  author    User   @relation(fields: [authorId], references: [id])
+  author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
   replies   Reply[]
 }
@@ -23,9 +23,9 @@ model Reply {
   id        String     @default(cuid()) @id
   content   String
   score     Int @default(0)
-  author    User   @relation(fields: [authorId], references: [id])
+  author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
-  parent    Comment @relation(fields: [parentId], references: [id])
+  parent    Comment @relation(fields: [parentId], references: [id], onDelete: Cascade)
   parentId  String
 }
 

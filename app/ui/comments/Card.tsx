@@ -1,5 +1,6 @@
 import { Comment, Reply } from "@/lib/types";
 import { useState } from "react";
+import DeleteIt from "./DeleteIt";
 
 type CardType = {
     variant: 'comment' | 'reply',
@@ -22,7 +23,7 @@ export default function Card({variant, comment, reply, replyForm, setReplyForm}:
         <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0, backgroundColor: variant === "reply" ? `lightblue` : `lightpink`}}>
         <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
             <button onClick={() => handleReplyForm(id)}>Reply</button>
-            {/* <DeleteIt variant={variant} id={id} replyId={replyId} /> */}
+            <DeleteIt variant={variant} id={id} replyId={replyId} />
         </div>
         <div>{content || replyContent }</div>
         {/* {
