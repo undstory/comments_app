@@ -41,6 +41,23 @@ export const createNewComment = async (content: string, date: Date) => {
   }
 };
 
+export const createNewReply = async (
+  content: string,
+  date: Date,
+  parentId: string
+) => {
+  const authorId = "cluuv3sfa0001tbmmbbuk9mi7";
+
+  try {
+    const reply = await prisma.reply.create({
+      data: { content: content, authorId, parentId },
+    });
+    return reply;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const removeComment = async (id: string, variant: string) => {
   try {
     if (variant === "comment") {

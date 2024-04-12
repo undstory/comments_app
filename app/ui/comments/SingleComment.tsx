@@ -7,6 +7,7 @@ import { boolean } from "zod";
 import { useState } from "react";
 import AddComment from "./AddComment";
 import Card from "./Card";
+import AddReply from "./AddReply";
 
 export default function SingleComment({ comment, commentReplies}: {comment?: Comment, commentReplies?: Reply[]}) {
 
@@ -17,10 +18,9 @@ export default function SingleComment({ comment, commentReplies}: {comment?: Com
 
     return (
         <div>
-            {/* comment?.id === commentId */}
             <Card variant="comment" comment={comment} replyForm={replyForm} setReplyForm={setReplyForm} />
-            {replyForm ? (
-                <AddComment />
+            {replyForm && comment ? (
+                <AddReply parentId={comment.id}/>
             ) : null}
             <div>
                 {commentReplies && commentReplies.map((reply) => {
