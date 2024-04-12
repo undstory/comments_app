@@ -20,7 +20,7 @@ export default function SingleComment({ comment, commentReplies}: {comment?: Com
         <div>
             <Card variant="comment" comment={comment} replyForm={replyForm} setReplyForm={setReplyForm} />
             {replyForm && comment ? (
-                <AddReply parentId={comment.id}/>
+                <AddReply parentId={comment.id} setReplyForm={setReplyForm}/>
             ) : null}
             <div>
                 {commentReplies && commentReplies.map((reply) => {
