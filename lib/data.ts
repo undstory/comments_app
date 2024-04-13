@@ -18,6 +18,15 @@ export const fetchReplies = async () => {
   }
 };
 
+export const fetchUsers = async () => {
+  try {
+    const users = await prisma.user.findMany();
+    return users;
+  } catch (e) {
+    console.log("nie znaleziono szukanych danych, e");
+  }
+};
+
 export const fetchInfoAboutAuthor = async (id: string) => {
   const author = await prisma.user.findUnique({
     where: {
@@ -29,7 +38,7 @@ export const fetchInfoAboutAuthor = async (id: string) => {
 };
 
 export const createNewComment = async (content: string, date: Date) => {
-  const authorId = "cluuv3sfa0001tbmmbbuk9mi7";
+  const authorId = "cluuv37mt0000tbmmethcuwv0"; //aga
 
   try {
     const comment = await prisma.comment.create({
@@ -46,7 +55,7 @@ export const createNewReply = async (
   date: Date,
   parentId: string
 ) => {
-  const authorId = "cluuv3sfa0001tbmmbbuk9mi7";
+  const authorId = "cluuv37mt0000tbmmethcuwv0";
 
   try {
     const reply = await prisma.reply.create({

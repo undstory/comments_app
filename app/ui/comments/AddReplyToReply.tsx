@@ -3,7 +3,7 @@
 import { createReply } from "@/lib/actions";
 import { useRef } from "react";
 
-export default function AddReplyToReply({setReplyToReplyForm, parentId}: {setReplyToReplyForm: any, parentId: string}) {
+export default function AddReplyToReply({setReplyToReplyForm, parentId, username}: {setReplyToReplyForm: any, parentId: string, username: any}) {
 const formRef = useRef<HTMLFormElement>(null)
 
     return (
@@ -13,7 +13,7 @@ const formRef = useRef<HTMLFormElement>(null)
                 formRef?.current?.reset();
                 setReplyToReplyForm(false)}
             }>
-                <textarea name="content"></textarea>
+                <textarea name="content" defaultValue={`@${username}, `}></textarea>
                 <button type="submit">Reply</button>
             </form>
         </div>

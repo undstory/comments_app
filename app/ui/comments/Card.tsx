@@ -9,10 +9,11 @@ type CardType = {
     replyForm?: boolean,
     setReplyForm?: any,
     replyToReplyForm?: boolean,
-    setReplyToReplyForm?: any
+    setReplyToReplyForm?: any,
+    username?: string
 }
 
-export default function Card({variant, comment, reply, replyForm, setReplyForm, replyToReplyForm, setReplyToReplyForm}: CardType
+export default function Card({variant, username, comment, reply, replyForm, setReplyForm, replyToReplyForm, setReplyToReplyForm}: CardType
 ) {
     const { content, id, authorId } = comment || {};
     const { content: replyContent, id: replyId, authorId: replyAuthorId } = reply || {};
@@ -30,6 +31,7 @@ export default function Card({variant, comment, reply, replyForm, setReplyForm, 
         <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
             <button onClick={() => handleReplyForm(variant)}>Reply</button>
             <DeleteIt variant={variant} id={id} replyId={replyId} />
+            <div>Username: { username }</div>
         </div>
         <div>{content || replyContent }</div>
         {/* {
