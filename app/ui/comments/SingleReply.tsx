@@ -9,9 +9,9 @@ export default function SingleReply({reply}: {reply: Reply}) {
     return (
         <div>
             <Card variant="reply" reply={reply} replyToReplyForm={replyToReplyForm} setReplyToReplyForm={setReplyToReplyForm} />
-                        { replyToReplyForm && reply ? (
-                            <AddReplyToReply parentId={reply.parentId} setReplyToReplyForm={setReplyToReplyForm} />
-                        ) : null }
+                { replyToReplyForm && reply ? (
+                    <AddReplyToReply parentId={reply.parentId} setReplyToReplyForm={setReplyToReplyForm} />
+                ) : null }
         </div>
     );
 }
