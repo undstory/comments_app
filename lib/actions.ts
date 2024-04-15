@@ -12,6 +12,7 @@ import prisma from "./prisma";
 import { RefObject } from "react";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
 const FormSchema = z.object({
   id: z.string(),
@@ -48,30 +49,31 @@ export async function createNewUser(formData: FormData) {
   const createdAt = new Date();
 
   await addNewUser(username, email, password);
-
-  revalidatePath("/comments");
+  redirect("/login");
 }
 
-export async function createComment(formData: FormData) {
+export async function createComment(formData: FormData, id?: string) {
   const { content } = CreateComment.parse({
     content: formData.get("content"),
   });
   if (!content || typeof content !== "string") return;
   const createdAt = new Date();
-
-  await createNewComment(content, createdAt);
+  if (id) await createNewComment(content, createdAt, id);
 
   revalidatePath("/comments");
 }
 
-export async function createReply(parentId: string, formData: FormData) {
+export async function createReply(
+  parentId: string,
+  formData: FormData,
+  id?: string
+) {
   const { content } = CreateReply.parse({
     content: formData.get("content"),
   });
   if (!content || typeof content !== "string") return;
   const createdAt = new Date();
-
-  await createNewReply(content, createdAt, parentId);
+  if (id) await createNewReply(content, createdAt, parentId, id);
 
   revalidatePath("/comments");
 }

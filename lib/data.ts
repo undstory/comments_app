@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import prisma from "../lib/prisma";
 import bcrypt from "bcrypt";
 
@@ -38,12 +39,14 @@ export const fetchInfoAboutAuthor = async (id: string) => {
   return author;
 };
 
-export const createNewComment = async (content: string, date: Date) => {
-  const authorId = "cluuv37mt0000tbmmethcuwv0"; //aga
-
+export const createNewComment = async (
+  content: string,
+  date: Date,
+  id: string
+) => {
   try {
     const comment = await prisma.comment.create({
-      data: { content: content, authorId },
+      data: { content: content, authorId: id },
     });
     return comment;
   } catch (error) {
@@ -54,13 +57,12 @@ export const createNewComment = async (content: string, date: Date) => {
 export const createNewReply = async (
   content: string,
   date: Date,
-  parentId: string
+  parentId: string,
+  id: string
 ) => {
-  const authorId = "cluuv37mt0000tbmmethcuwv0";
-
   try {
     const reply = await prisma.reply.create({
-      data: { content: content, authorId, parentId },
+      data: { content: content, authorId: id, parentId },
     });
     return reply;
   } catch (error) {

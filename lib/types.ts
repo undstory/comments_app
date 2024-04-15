@@ -20,9 +20,9 @@ export type User = {
   id: string;
   username: string;
   email: string;
-  createdAt: string;
-  updatedAt: string;
-  avatar: string;
-  comments: Comment[];
-  replies: Reply[];
+  createdAt: Date;
+  updatedAt: Date;
+  avatar?: string;
+  comments?: Comment[];
+  replies?: Reply[];
 };

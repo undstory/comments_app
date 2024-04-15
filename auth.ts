@@ -5,7 +5,12 @@ import { fetchUser } from "./lib/data";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 
-export const { auth, signIn, signOut } = NextAuth({
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
