@@ -1,4 +1,5 @@
 import prisma from "../lib/prisma";
+import bcrypt from "bcrypt";
 
 export const fetchComments = async () => {
   try {
@@ -67,6 +68,30 @@ export const createNewReply = async (
   }
 };
 
+export const addNewUser = async (
+  username: string,
+  email: string,
+  password: string
+) => {
+  const avatar = "/../../";
+
+  try {
+    const user = await prisma.user.create({
+      data: {
+        username: username,
+        email: email,
+        password: await bcrypt.hash(password, 6),
+        avatar: avatar,
+      },
+    });
+    console.log("userek", user);
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const removeComment = async (id: string, variant: string) => {
   try {
     if (variant === "comment") {
@@ -88,5 +113,18 @@ export const removeComment = async (id: string, variant: string) => {
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const fetchUser = async (email: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    return user;
+  } catch (e) {
+    console.log("nie znaleziono szukanych danych, e");
   }
 };

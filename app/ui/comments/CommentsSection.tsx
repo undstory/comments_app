@@ -6,7 +6,6 @@ import SingleComment from "./SingleComment";
 
 export default function CommentsSection({ comments, replies, users} : {comments?: Comment[],  replies?: Reply[], users?: any,}) {
 
-console.log("replies", replies);
 
     return (
         <div>

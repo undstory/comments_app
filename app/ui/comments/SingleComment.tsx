@@ -26,7 +26,6 @@ export default function SingleComment({ comment, userData, commentReplies, users
             <div>
                 {commentReplies && commentReplies.length > 0 ? commentReplies.map((reply: Reply) => {
                     const userData: User[] | undefined = users && users.filter((user: any) => user.id === reply.authorId);
-                    console.log("userData", userData);
 
                     return (
                         <SingleReply userData={userData} key={reply.id} reply={reply} />
