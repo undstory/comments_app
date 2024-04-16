@@ -4,31 +4,31 @@ import { fetchInfoAboutAuthor } from "@/lib/data";
 import { Comment, Reply, User } from "@/lib/types";
 import DeleteIt from "./DeleteIt";
 import { boolean } from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddComment from "./AddComment";
 import Card from "./Card";
 import AddReply from "./AddReply";
 import AddReplyToReply from "./AddReplyToReply";
 import SingleReply from "./SingleReply";
 
-export default function SingleComment({ id, username: userName, comment, userData, commentReplies, users}: {id?: string, username?: string, comment?: Comment, userData?: User[], commentReplies?: Reply[], users: User[]}) {
-    const [ username ] = userData || [];
-    // const { content: replyContent, id: replyId, parentId, authorId: replyAuthorId } = reply || {}
-    // const authorData = authorId && await fetchInfoAboutAuthor(authorId);
-    // const replyAuthorData = replyAuthorId && await fetchInfoAboutAuthor(replyAuthorId);
+export default function SingleComment({ idLoggedUser, nameLoggedUser, comment, commentReplies, users}: {idLoggedUser?: string, nameLoggedUser?: string, comment?: Comment, commentReplies?: Reply[], users: User[]}) {
+
     const [ replyForm, setReplyForm ] = useState<boolean>(false)
+    const [ authorOfId, setAuthorOfId ] = useState<string>("")
+    const nameOfAuthor = users && users.filter((user) => user.id === authorOfId)
+
     return (
         <div>
-            <Card variant="comment" username={username?.username} comment={comment} replyForm={replyForm} setReplyForm={setReplyForm} />
+            <Card variant="comment" authorOfId={authorOfId} setAuthorOfId={setAuthorOfId} users={users} idLoggedUser={idLoggedUser} comment={comment} replyForm={replyForm} setReplyForm={setReplyForm} />
             {replyForm && comment ? (
-                <AddReply id={id} parentId={comment.id} username={username?.username}  setReplyForm={setReplyForm}/>
+                <AddReply idLoggedUser={idLoggedUser} nameOfAuthor={nameOfAuthor} parentId={comment.id} setReplyForm={setReplyForm}/>
             ) : null}
             <div>
                 {commentReplies && commentReplies.length > 0 ? commentReplies.map((reply: Reply) => {
-                    const userData: User[] | undefined = users && users.filter((user: any) => user.id === reply.authorId);
+                    // const userData: User[] | undefined = users && users.filter((user: any) => user.id === reply.authorId);
 
                     return (
-                        <SingleReply id={id} userData={userData} key={reply.id} reply={reply} />
+                        <SingleReply idLoggedUser={idLoggedUser} users={users} key={reply.id} reply={reply} />
                     )
                 }): null}
             </div>

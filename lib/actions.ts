@@ -52,13 +52,13 @@ export async function createNewUser(formData: FormData) {
   redirect("/login");
 }
 
-export async function createComment(formData: FormData, id?: string) {
+export async function createComment(formData: FormData, idLoggedUser?: string) {
   const { content } = CreateComment.parse({
     content: formData.get("content"),
   });
   if (!content || typeof content !== "string") return;
   const createdAt = new Date();
-  if (id) await createNewComment(content, createdAt, id);
+  if (idLoggedUser) await createNewComment(content, createdAt, idLoggedUser);
 
   revalidatePath("/comments");
 }

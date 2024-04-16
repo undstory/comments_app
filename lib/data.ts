@@ -42,11 +42,11 @@ export const fetchInfoAboutAuthor = async (id: string) => {
 export const createNewComment = async (
   content: string,
   date: Date,
-  id: string
+  idLoggedUser: string
 ) => {
   try {
     const comment = await prisma.comment.create({
-      data: { content: content, authorId: id },
+      data: { content: content, authorId: idLoggedUser },
     });
     return comment;
   } catch (error) {

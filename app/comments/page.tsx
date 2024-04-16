@@ -13,11 +13,11 @@ export default async function Page() {
     const session = await auth()
     const loggedUserEmail = session && session?.user?.email;
     const user = await fetchUser(loggedUserEmail as string)
-    const { id, username, email } = user || {};
+    const { id: idLoggedUser, username: nameLoggedUser } = user || {};
     return (
         <div>
             <h2>Comments App</h2>
-            <h3>Hi, {username}</h3>
+            <h3>Hi, {nameLoggedUser}</h3>
             <form
           action={async () => {
             'use server';
@@ -26,12 +26,15 @@ export default async function Page() {
         >
           <button>
             <div>Sign Out</div>
+            <div>Id logged user {idLoggedUser}</div>
+            <div>Name logged user {nameLoggedUser}</div>
+
           </button>
         </form>
 
-            <CommentsSection id={id} username={username} comments={comments} replies={replies} users={users} />
+            <CommentsSection idLoggedUser={idLoggedUser} nameLoggedUser={nameLoggedUser} comments={comments} replies={replies} users={users} />
 
-            <AddComment id={id}/>
+            <AddComment idLoggedUser={idLoggedUser}/>
         </div>
     );
 }
