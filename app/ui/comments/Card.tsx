@@ -38,9 +38,10 @@ export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, va
     return (
         <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0, backgroundColor: variant === "reply" ? `lightblue` : `lightpink`}}>
         <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
-            <button onClick={() => handleReplyForm(variant)}>Reply</button>
+            {replyAuthorId !== idLoggedUser && variant === "reply" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
+            {authorId !== idLoggedUser && variant === "comment" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
             {authorId === idLoggedUser && variant==="comment" && <DeleteIt variant={variant} id={id} replyId={replyId} />}
-            {/* {replyAuthorId === userId && variant === "reply" ? (<DeleteIt variant={variant} id={id} replyId={replyId} />) : null} */}
+            {replyAuthorId === idLoggedUser && variant === "reply" ? (<DeleteIt variant={variant} id={id} replyId={replyId} />) : null}
             {variant === "comment" && (
                 <div>Username: {authorOfComment && authorOfComment[0].username}</div>
             )}
