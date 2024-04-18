@@ -2,6 +2,7 @@ import { Comment, Reply, User } from "@/lib/types";
 import { useState } from "react";
 import DeleteIt from "./DeleteIt";
 import Edit from "./Edit";
+import { translations } from "@/constants/translations";
 
 type CardType = {
     variant: 'comment' | 'reply',
@@ -36,15 +37,15 @@ export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, va
         }
     const authorOfComment = users && comment && users.filter((user) => user.id === comment.authorId);
     const authorOfReply = users && reply && users.filter((user) => user.id === replyAuthorId);
-
+    const {addReply, edit } = translations;
 
     return (
         <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0, backgroundColor: variant === "reply" ? `lightblue` : `lightpink`}}>
         <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
-            {replyAuthorId !== idLoggedUser && variant === "reply" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
-            {authorId !== idLoggedUser && variant === "comment" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
-            {authorId === idLoggedUser && variant==="comment" ? <button onClick={() => setEditState(!editState)}>Edit</button> : null}
-            {replyAuthorId === idLoggedUser && variant==="reply" ? <button onClick={() => setEditState(!editState)}>Edit</button> : null}
+            {replyAuthorId !== idLoggedUser && variant === "reply" && <button onClick={() => handleReplyForm(variant)}>{addReply}</button>}
+            {authorId !== idLoggedUser && variant === "comment" && <button onClick={() => handleReplyForm(variant)}>{addReply}</button>}
+            {authorId === idLoggedUser && variant==="comment" ? <button onClick={() => setEditState(!editState)}>{edit}</button> : null}
+            {replyAuthorId === idLoggedUser && variant==="reply" ? <button onClick={() => setEditState(!editState)}>{edit}</button> : null}
             {authorId === idLoggedUser && variant==="comment" && <DeleteIt variant={variant} id={id} replyId={replyId} />}
             {replyAuthorId === idLoggedUser && variant === "reply" ? (<DeleteIt variant={variant} id={id} replyId={replyId} />) : null}
             {variant === "comment" && (

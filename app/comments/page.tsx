@@ -4,6 +4,8 @@ import AddComment from "../ui/comments/AddComment";
 import { Comment, User } from "@/lib/types";
 import CommentsSection from "../ui/comments/CommentsSection";
 import { auth, signOut } from "@/auth";
+import { translations } from "@/constants/translations";
+
 
 
 export default async function Page() {
@@ -14,26 +16,22 @@ export default async function Page() {
     const loggedUserEmail = session && session?.user?.email;
     const user = await fetchUser(loggedUserEmail as string)
     const { id: idLoggedUser, username: nameLoggedUser } = user || {};
+    const { commentsApp, helloWord, signOutOption } = translations;
     return (
         <div>
-            <h2>Comments App</h2>
-            <h3>Hi, {nameLoggedUser}</h3>
+            <h2>{commentsApp}</h2>
+            <h3>{helloWord}{nameLoggedUser}</h3>
             <form
           action={async () => {
             'use server';
             await signOut();
           }}
         >
-          <button>
-            <div>Sign Out</div>
-            <div>Id logged user {idLoggedUser}</div>
-            <div>Name logged user {nameLoggedUser}</div>
-
+          <button type="submit">
+            <div>{signOutOption}</div>
           </button>
         </form>
-
             <CommentsSection idLoggedUser={idLoggedUser} nameLoggedUser={nameLoggedUser} comments={comments} replies={replies} users={users} />
-
             <AddComment idLoggedUser={idLoggedUser}/>
         </div>
     );

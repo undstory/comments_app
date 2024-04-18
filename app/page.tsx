@@ -1,12 +1,14 @@
+import { translations } from "@/constants/translations";
 import Link from "next/link";
 
 
 export default function Home() {
+  const { commentsApp, loginText, registerText, hereWord } = translations;
   return (
   <div>
-    <h2>Hello Comments App</h2>
-    <p>If you already have an accout, please log in <Link href="/login">here</Link></p>
-    <p>If you have not an account yet, please register<Link href="/register">here</Link></p>
+    <h2>{commentsApp}</h2>
+    <p>{loginText} <Link href="/login">{hereWord}</Link></p>
+    <p>{registerText}<Link href="/register">{hereWord}</Link></p>
   </div>
   );
 }

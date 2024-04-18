@@ -1,11 +1,12 @@
 'use client';
 
+import { translations } from "@/constants/translations";
 import { createReply } from "@/lib/actions";
 import { useRef } from "react";
 
 export default function AddReply({idLoggedUser, parentId, setReplyForm, nameOfAuthor }: {idLoggedUser?: string, parentId: string, setReplyForm: any, nameOfAuthor: any }) {
 const formRef = useRef<HTMLFormElement>(null)
-
+const { addReply } = translations;
 
     return (
         <div>
@@ -16,7 +17,7 @@ const formRef = useRef<HTMLFormElement>(null)
             }
             }>
                 <textarea name="content" defaultValue={`@${nameOfAuthor[0].username}, `}></textarea>
-                <button type="submit">Add reply</button>
+                <button type="submit">{addReply}</button>
             </form>
         </div>
     );

@@ -25,8 +25,6 @@ export default function SingleComment({ idLoggedUser, nameLoggedUser, comment, c
             ) : null}
             <div>
                 {commentReplies && commentReplies.length > 0 ? commentReplies.map((reply: Reply) => {
-                    // const userData: User[] | undefined = users && users.filter((user: any) => user.id === reply.authorId);
-
                     return (
                         <SingleReply idLoggedUser={idLoggedUser} users={users} key={reply.id} reply={reply} />
                     )
