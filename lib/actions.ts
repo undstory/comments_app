@@ -5,6 +5,7 @@ import {
   addNewUser,
   createNewComment,
   createNewReply,
+  editContent,
   removeComment,
 } from "./data";
 import { revalidatePath } from "next/cache";
@@ -79,6 +80,20 @@ export async function createReply(
 
 export async function deleteComment(id: string, variant: string) {
   await removeComment(id, variant);
+  revalidatePath("/comments");
+}
+const updateText = FormSchema.omit({ id: true, createdAt: true });
+
+export async function updateContent(
+  variant: string,
+  formData: FormData,
+  idEditedThing?: string
+) {
+  const { content } = updateText.parse({
+    content: formData.get("newContent"),
+  });
+  if (idEditedThing && content && variant)
+    await editContent(content, idEditedThing, variant);
   revalidatePath("/comments");
 }
 

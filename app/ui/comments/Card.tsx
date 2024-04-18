@@ -1,6 +1,7 @@
 import { Comment, Reply, User } from "@/lib/types";
 import { useState } from "react";
 import DeleteIt from "./DeleteIt";
+import Edit from "./Edit";
 
 type CardType = {
     variant: 'comment' | 'reply',
@@ -18,6 +19,8 @@ type CardType = {
 
 export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, variant, comment, reply, replyForm, setReplyForm, replyToReplyForm, setReplyToReplyForm}: CardType
 ) {
+
+    const [ editState, setEditState ] = useState<boolean>(false)
     const { content, id, authorId } = comment || {};
 
     const { content: replyContent, id: replyId, authorId: replyAuthorId } = reply || {};
@@ -40,6 +43,8 @@ export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, va
         <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
             {replyAuthorId !== idLoggedUser && variant === "reply" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
             {authorId !== idLoggedUser && variant === "comment" && <button onClick={() => handleReplyForm(variant)}>Reply</button>}
+            {authorId === idLoggedUser && variant==="comment" ? <button onClick={() => setEditState(!editState)}>Edit</button> : null}
+            {replyAuthorId === idLoggedUser && variant==="reply" ? <button onClick={() => setEditState(!editState)}>Edit</button> : null}
             {authorId === idLoggedUser && variant==="comment" && <DeleteIt variant={variant} id={id} replyId={replyId} />}
             {replyAuthorId === idLoggedUser && variant === "reply" ? (<DeleteIt variant={variant} id={id} replyId={replyId} />) : null}
             {variant === "comment" && (
@@ -49,7 +54,10 @@ export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, va
                 <div>Username: {authorOfReply && authorOfReply[0].username}</div>
             )}
         </div>
-        <div>{content || replyContent }</div>
+        {editState ? <Edit setEditState={setEditState} content={content} replyContent={replyContent} variant={variant} id={id} replyId={replyId} /> : (
+            <div>{content || replyContent }</div>
+        )
+    }
     </div>
     );
 }

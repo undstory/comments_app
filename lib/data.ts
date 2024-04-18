@@ -106,6 +106,38 @@ export const addNewUser = async (
   }
 };
 
+export const editContent = async (
+  newContent: string,
+  id: string,
+  variant: string
+) => {
+  try {
+    if (variant === "comment") {
+      const comment = await prisma.comment.update({
+        data: {
+          content: newContent,
+        },
+        where: {
+          id: id,
+        },
+      });
+      return comment;
+    } else {
+      const reply = await prisma.reply.update({
+        data: {
+          content: newContent,
+        },
+        where: {
+          id: id,
+        },
+      });
+      return reply;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const removeComment = async (id: string, variant: string) => {
   try {
     if (variant === "comment") {
