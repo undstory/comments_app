@@ -75,18 +75,30 @@ export const addNewUser = async (
   email: string,
   password: string
 ) => {
-  const avatar = "/../../";
+  // const avatar = "/../../";
 
+  const isExistEmail = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  if (isExistEmail) {
+    return {
+      errors: {
+        email: ["Email already exist"],
+      },
+    };
+  }
+  const salt = await bcrypt.genSalt(10);
   try {
     const user = await prisma.user.create({
       data: {
         username: username,
         email: email,
-        password: await bcrypt.hash(password, 6),
-        avatar: avatar,
+        password: await bcrypt.hash(password, salt),
+        // avatar: avatar,
       },
     });
-    console.log("userek", user);
 
     return user;
   } catch (error) {

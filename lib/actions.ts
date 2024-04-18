@@ -21,9 +21,9 @@ const FormSchema = z.object({
 
 const FormSchemaForUser = z.object({
   id: z.string(),
-  username: z.string(),
-  password: z.string(),
-  email: z.string(),
+  username: z.string().min(3).max(255),
+  password: z.string().min(3).max(50),
+  email: z.string().email(),
 });
 
 const CreateUser = FormSchemaForUser.omit({ id: true, createdAt: true });
@@ -46,7 +46,6 @@ export async function createNewUser(formData: FormData) {
     typeof password !== "string"
   )
     return;
-  const createdAt = new Date();
 
   await addNewUser(username, email, password);
   redirect("/login");
