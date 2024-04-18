@@ -1,64 +1,128 @@
-import { Comment, Reply, User } from "@/lib/types";
-import { useState } from "react";
-import DeleteIt from "./DeleteIt";
-import Edit from "./Edit";
-import { translations } from "@/constants/translations";
+import { Comment, Reply, User } from '@/lib/types'
+import { useState } from 'react'
+import DeleteIt from './DeleteIt'
+import Edit from './Edit'
+import { translations } from '@/constants/translations'
 
 type CardType = {
-    variant: 'comment' | 'reply',
-    comment?: Comment,
-    reply?: Reply,
-    replyForm?: boolean,
-    setReplyForm?: any,
-    replyToReplyForm?: boolean,
-    setReplyToReplyForm?: any,
-    idLoggedUser?: string,
-    users?: User[],
-    setAuthorOfId?: any,
+    variant: 'comment' | 'reply'
+    comment?: Comment
+    reply?: Reply
+    replyForm?: boolean
+    setReplyForm?: any
+    replyToReplyForm?: boolean
+    setReplyToReplyForm?: any
+    idLoggedUser?: string
+    users?: User[]
+    setAuthorOfId?: any
     authorOfId?: any
 }
 
-export default function Card({idLoggedUser, authorOfId, setAuthorOfId, users, variant, comment, reply, replyForm, setReplyForm, replyToReplyForm, setReplyToReplyForm}: CardType
-) {
+export default function Card({
+    idLoggedUser,
+    authorOfId,
+    setAuthorOfId,
+    users,
+    variant,
+    comment,
+    reply,
+    replyForm,
+    setReplyForm,
+    replyToReplyForm,
+    setReplyToReplyForm,
+}: CardType) {
+    const [editState, setEditState] = useState<boolean>(false)
+    const { content, id, authorId } = comment || {}
 
-    const [ editState, setEditState ] = useState<boolean>(false)
-    const { content, id, authorId } = comment || {};
-
-    const { content: replyContent, id: replyId, authorId: replyAuthorId } = reply || {};
+    const {
+        content: replyContent,
+        id: replyId,
+        authorId: replyAuthorId,
+    } = reply || {}
 
     const handleReplyForm = (variant: 'comment' | 'reply') => {
-        if(variant === 'comment') {
+        if (variant === 'comment') {
             setReplyForm(() => !replyForm)
             setAuthorOfId(authorId)
         } else {
             setReplyToReplyForm(() => !replyToReplyForm)
             setAuthorOfId(replyAuthorId)
         }
-        }
-    const authorOfComment = users && comment && users.filter((user) => user.id === comment.authorId);
-    const authorOfReply = users && reply && users.filter((user) => user.id === replyAuthorId);
-    const {addReply, edit } = translations;
+    }
+    const authorOfComment =
+        users && comment && users.filter((user) => user.id === comment.authorId)
+    const authorOfReply =
+        users && reply && users.filter((user) => user.id === replyAuthorId)
+    const { addReply, edit } = translations
 
     return (
-        <div style={{border: `1px solid red`, margin: `5px`, marginLeft: variant === "reply" ? `10px` : 0, backgroundColor: variant === "reply" ? `lightblue` : `lightpink`}}>
-        <div style={{ display: `flex`, flexDirection: `row`, gap: `10px`, margin: `10px`}}>
-            {replyAuthorId !== idLoggedUser && variant === "reply" && <button onClick={() => handleReplyForm(variant)}>{addReply}</button>}
-            {authorId !== idLoggedUser && variant === "comment" && <button onClick={() => handleReplyForm(variant)}>{addReply}</button>}
-            {authorId === idLoggedUser && variant==="comment" ? <button onClick={() => setEditState(!editState)}>{edit}</button> : null}
-            {replyAuthorId === idLoggedUser && variant==="reply" ? <button onClick={() => setEditState(!editState)}>{edit}</button> : null}
-            {authorId === idLoggedUser && variant==="comment" && <DeleteIt variant={variant} id={id} replyId={replyId} />}
-            {replyAuthorId === idLoggedUser && variant === "reply" ? (<DeleteIt variant={variant} id={id} replyId={replyId} />) : null}
-            {variant === "comment" && (
-                <div>Username: {authorOfComment && authorOfComment[0].username}</div>
-            )}
-            {variant === "reply" && (
-                <div>Username: {authorOfReply && authorOfReply[0].username}</div>
+        <div
+            style={{
+                border: `1px solid red`,
+                margin: `5px`,
+                marginLeft: variant === 'reply' ? `10px` : 0,
+                backgroundColor:
+                    variant === 'reply' ? `lightblue` : `lightpink`,
+            }}
+        >
+            <div
+                style={{
+                    display: `flex`,
+                    flexDirection: `row`,
+                    gap: `10px`,
+                    margin: `10px`,
+                }}
+            >
+                {replyAuthorId !== idLoggedUser && variant === 'reply' && (
+                    <button onClick={() => handleReplyForm(variant)}>
+                        {addReply}
+                    </button>
+                )}
+                {authorId !== idLoggedUser && variant === 'comment' && (
+                    <button onClick={() => handleReplyForm(variant)}>
+                        {addReply}
+                    </button>
+                )}
+                {authorId === idLoggedUser && variant === 'comment' ? (
+                    <button onClick={() => setEditState(!editState)}>
+                        {edit}
+                    </button>
+                ) : null}
+                {replyAuthorId === idLoggedUser && variant === 'reply' ? (
+                    <button onClick={() => setEditState(!editState)}>
+                        {edit}
+                    </button>
+                ) : null}
+                {authorId === idLoggedUser && variant === 'comment' && (
+                    <DeleteIt variant={variant} id={id} replyId={replyId} />
+                )}
+                {replyAuthorId === idLoggedUser && variant === 'reply' ? (
+                    <DeleteIt variant={variant} id={id} replyId={replyId} />
+                ) : null}
+                {variant === 'comment' && (
+                    <div>
+                        Username:{' '}
+                        {authorOfComment && authorOfComment[0].username}
+                    </div>
+                )}
+                {variant === 'reply' && (
+                    <div>
+                        Username: {authorOfReply && authorOfReply[0].username}
+                    </div>
+                )}
+            </div>
+            {editState ? (
+                <Edit
+                    setEditState={setEditState}
+                    content={content}
+                    replyContent={replyContent}
+                    variant={variant}
+                    id={id}
+                    replyId={replyId}
+                />
+            ) : (
+                <div>{content || replyContent}</div>
             )}
         </div>
-        {editState ? <Edit setEditState={setEditState} content={content} replyContent={replyContent} variant={variant} id={id} replyId={replyId} /> : (
-            <div>{content || replyContent }</div>
-        )
-    }
-    </div>
-    );
+    )
 }

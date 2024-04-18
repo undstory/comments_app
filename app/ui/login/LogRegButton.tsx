@@ -1,11 +1,18 @@
-"use client"
+'use client'
 
-import { useFormStatus } from "react-dom";
+import { useFormStatus } from 'react-dom'
 
-export default function LogRegButton({variant} : {variant: "login" |"register"}) {
-    const { pending } = useFormStatus();
+export default function LogRegButton({
+    variant,
+}: {
+    variant: 'login' | 'register'
+}) {
+    const { pending } = useFormStatus()
 
     return (
-       <button type="submit">{variant==="login" ? 'Login' : 'Register'}{ pending ? "..." : ""}</button>
-    );
+        <button type="submit">
+            {variant === 'login' ? 'Login' : 'Register'}
+            {pending ? '...' : ''}
+        </button>
+    )
 }
