@@ -1,7 +1,8 @@
+import Providers from '@/providers/providers';
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
 import Link from 'next/link'
-import Providers from './providers'
+
 
 const rubik = Rubik({ subsets: ['latin'] })
 

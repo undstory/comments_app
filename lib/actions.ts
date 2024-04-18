@@ -14,6 +14,9 @@ import { RefObject } from 'react'
 import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
 import { redirect } from 'next/navigation'
+import { translations } from '@/constants/translations'
+
+const { invalidCredentialsText, goWrongText } = translations
 
 const FormSchema = z.object({
     id: z.string(),
@@ -57,8 +60,7 @@ export async function createComment(formData: FormData, idLoggedUser?: string) {
         content: formData.get('content'),
     })
     if (!content || typeof content !== 'string') return
-    const createdAt = new Date()
-    if (idLoggedUser) await createNewComment(content, createdAt, idLoggedUser)
+    if (idLoggedUser) await createNewComment(content, idLoggedUser)
 
     revalidatePath('/comments')
 }
@@ -72,8 +74,7 @@ export async function createReply(
         content: formData.get('content'),
     })
     if (!content || typeof content !== 'string') return
-    const createdAt = new Date()
-    if (id) await createNewReply(content, createdAt, parentId, id)
+    if (id) await createNewReply(content, parentId, id)
 
     revalidatePath('/comments')
 }
@@ -107,9 +108,9 @@ export async function authenticate(
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
-                    return 'Invalid credentials.'
+                    return invalidCredentialsText
                 default:
-                    return 'Something went wrong.'
+                    return goWrongText
             }
         }
         throw error

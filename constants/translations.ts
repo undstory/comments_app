@@ -11,4 +11,8 @@ export const translations = {
     registerText: 'If you have not an account yet, please register',
     hereWord: 'here',
     backToHomeText: 'Back to the home',
+    loginWord: 'Login',
+    registerWord: 'Register',
+    invalidCredentialsText: 'Invalid credentials.',
+    goWrongText: 'Something went wrong.',
 }

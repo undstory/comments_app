@@ -1,6 +1,15 @@
 import { translations } from '@/constants/translations'
 import { updateContent } from '@/lib/actions'
 
+type EditType = {
+    setEditState?: any
+    id?: string
+    replyId?: string
+    variant: string
+    content?: string
+    replyContent?: string
+}
+
 export default function Edit({
     content,
     replyContent,
@@ -8,14 +17,7 @@ export default function Edit({
     replyId,
     setEditState,
     variant,
-}: {
-    setEditState?: any
-    id?: string
-    replyId?: string
-    variant: string
-    content?: string
-    replyContent?: string
-}) {
+}: EditType) {
     const { edit } = translations
     const idEditedThing = id || replyId
     return (

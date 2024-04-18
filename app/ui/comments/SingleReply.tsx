@@ -3,15 +3,17 @@ import AddReplyToReply from './AddReplyToReply'
 import Card from './Card'
 import { useState } from 'react'
 
+type SingleReplyType = {
+    idLoggedUser?: string
+    users?: User[]
+    reply: Reply
+}
+
 export default function SingleReply({
     idLoggedUser,
     users,
     reply,
-}: {
-    idLoggedUser?: string
-    users?: User[]
-    reply: Reply
-}) {
+}: SingleReplyType) {
     const [replyToReplyForm, setReplyToReplyForm] = useState<boolean>(false)
     const [authorOfId, setAuthorOfId] = useState<string>('')
     const nameOfAuthor = users && users.filter((user) => user.id === authorOfId)

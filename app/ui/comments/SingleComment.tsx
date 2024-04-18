@@ -11,19 +11,21 @@ import AddReply from './AddReply'
 import AddReplyToReply from './AddReplyToReply'
 import SingleReply from './SingleReply'
 
+type SingleCommentType = {
+    idLoggedUser?: string
+    nameLoggedUser?: string
+    comment?: Comment
+    commentReplies?: Reply[]
+    users: User[]
+}
+
 export default function SingleComment({
     idLoggedUser,
     nameLoggedUser,
     comment,
     commentReplies,
     users,
-}: {
-    idLoggedUser?: string
-    nameLoggedUser?: string
-    comment?: Comment
-    commentReplies?: Reply[]
-    users: User[]
-}) {
+}: SingleCommentType) {
     const [replyForm, setReplyForm] = useState<boolean>(false)
     const [authorOfId, setAuthorOfId] = useState<string>('')
     const nameOfAuthor = users && users.filter((user) => user.id === authorOfId)

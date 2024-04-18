@@ -1,31 +1,35 @@
 import { redirect } from 'next/navigation'
 import prisma from '../lib/prisma'
 import bcrypt from 'bcrypt'
+import { translations } from '@/constants/translations'
 
 export const fetchComments = async () => {
+    const { noData } = translations
     try {
         const comments = await prisma.comment.findMany()
         return comments
     } catch (e) {
-        console.log('nie znaleziono szukanych danych', e)
+        console.log(noData, e)
     }
 }
 
 export const fetchReplies = async () => {
+    const { noData } = translations
     try {
         const replies = await prisma.reply.findMany()
         return replies
     } catch (e) {
-        console.log('nie znaleziono szukanych danych, e')
+        console.log(noData, e)
     }
 }
 
 export const fetchUsers = async () => {
+    const { noData } = translations
     try {
         const users = await prisma.user.findMany()
         return users
     } catch (e) {
-        console.log('nie znaleziono szukanych danych, e')
+        console.log(noData, e)
     }
 }
 
@@ -41,7 +45,6 @@ export const fetchInfoAboutAuthor = async (id: string) => {
 
 export const createNewComment = async (
     content: string,
-    date: Date,
     idLoggedUser: string
 ) => {
     try {
@@ -56,7 +59,6 @@ export const createNewComment = async (
 
 export const createNewReply = async (
     content: string,
-    date: Date,
     parentId: string,
     id: string
 ) => {

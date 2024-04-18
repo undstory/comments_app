@@ -5,19 +5,21 @@ import { Reply, Comment, User } from '@/lib/types'
 import SingleComment from './SingleComment'
 import { translations } from '@/constants/translations'
 
+type CommentsSectionType = {
+    idLoggedUser?: string
+    nameLoggedUser?: string
+    comments?: Comment[]
+    replies?: Reply[]
+    users?: any
+}
+
 export default function CommentsSection({
     idLoggedUser,
     nameLoggedUser,
     comments,
     replies,
     users,
-}: {
-    idLoggedUser?: string
-    nameLoggedUser?: string
-    comments?: Comment[]
-    replies?: Reply[]
-    users?: any
-}) {
+}: CommentsSectionType) {
     const { noData } = translations
 
     return (
