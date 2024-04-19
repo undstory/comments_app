@@ -16,7 +16,8 @@ export default function SingleReply({
 }: SingleReplyType) {
     const [replyToReplyForm, setReplyToReplyForm] = useState<boolean>(false)
     const [authorOfId, setAuthorOfId] = useState<string>('')
-    const nameOfAuthor = users && users.filter((user) => user.id === authorOfId)
+    const nameOfAuthor: User[] | undefined =
+        users && users.filter((user) => user.id === authorOfId)
 
     return (
         <div>
@@ -30,7 +31,7 @@ export default function SingleReply({
                 replyToReplyForm={replyToReplyForm}
                 setReplyToReplyForm={setReplyToReplyForm}
             />
-            {replyToReplyForm && reply ? (
+            {replyToReplyForm && reply && nameOfAuthor ? (
                 <AddReplyToReply
                     nameOfAuthor={nameOfAuthor}
                     idLoggedUser={idLoggedUser}

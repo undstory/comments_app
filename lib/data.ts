@@ -77,8 +77,6 @@ export const addNewUser = async (
     email: string,
     password: string
 ) => {
-    // const avatar = "/../../";
-
     const isExistEmail = await prisma.user.findUnique({
         where: {
             email: email,
@@ -98,7 +96,6 @@ export const addNewUser = async (
                 username: username,
                 email: email,
                 password: await bcrypt.hash(password, salt),
-                // avatar: avatar,
             },
         })
 

@@ -1,5 +1,5 @@
 import { Comment, Reply, User } from '@/lib/types'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import DeleteIt from './DeleteIt'
 import Edit from './Edit'
 import { translations } from '@/constants/translations'
@@ -9,13 +9,13 @@ type CardType = {
     comment?: Comment
     reply?: Reply
     replyForm?: boolean
-    setReplyForm?: any
+    setReplyForm?: Dispatch<SetStateAction<boolean>>
     replyToReplyForm?: boolean
-    setReplyToReplyForm?: any
+    setReplyToReplyForm?: Dispatch<SetStateAction<boolean>>
     idLoggedUser?: string
     users?: User[]
-    setAuthorOfId?: any
-    authorOfId?: any
+    setAuthorOfId: (value: string) => void
+    authorOfId?: string
 }
 
 export default function Card({
@@ -40,14 +40,14 @@ export default function Card({
         authorId: replyAuthorId,
     } = reply || {}
 
-    const handleReplyForm = (variant: 'comment' | 'reply') => {
-        if (variant === 'comment') {
-            setReplyForm(() => !replyForm)
-            setAuthorOfId(authorId)
-        } else {
-            setReplyToReplyForm(() => !replyToReplyForm)
-            setAuthorOfId(replyAuthorId)
-        }
+    const handleReplyForm = () => {
+        setReplyForm && setReplyForm(() => !replyForm)
+        authorId && setAuthorOfId(authorId)
+    }
+
+    const handleReplyToReplyForm = () => {
+        setReplyToReplyForm && setReplyToReplyForm(() => !replyToReplyForm)
+        replyAuthorId && setAuthorOfId(replyAuthorId)
     }
     const authorOfComment =
         users && comment && users.filter((user) => user.id === comment.authorId)
@@ -74,14 +74,10 @@ export default function Card({
                 }}
             >
                 {replyAuthorId !== idLoggedUser && variant === 'reply' && (
-                    <button onClick={() => handleReplyForm(variant)}>
-                        {addReply}
-                    </button>
+                    <button onClick={handleReplyToReplyForm}>{addReply}</button>
                 )}
                 {authorId !== idLoggedUser && variant === 'comment' && (
-                    <button onClick={() => handleReplyForm(variant)}>
-                        {addReply}
-                    </button>
+                    <button onClick={handleReplyForm}>{addReply}</button>
                 )}
                 {authorId === idLoggedUser && variant === 'comment' ? (
                     <button onClick={() => setEditState(!editState)}>

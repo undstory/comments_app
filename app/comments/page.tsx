@@ -15,6 +15,8 @@ export default async function Page() {
     const user = await fetchUser(loggedUserEmail as string)
     const { id: idLoggedUser, username: nameLoggedUser } = user || {}
     const { commentsApp, helloWord, signOutOption } = translations
+    console.log(users)
+
     return (
         <div>
             <h2>{commentsApp}</h2>

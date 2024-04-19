@@ -10,7 +10,7 @@ type CommentsSectionType = {
     nameLoggedUser?: string
     comments?: Comment[]
     replies?: Reply[]
-    users?: any
+    users?: User[]
 }
 
 export default function CommentsSection({

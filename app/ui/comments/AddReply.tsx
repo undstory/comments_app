@@ -2,13 +2,14 @@
 
 import { translations } from '@/constants/translations'
 import { createReply } from '@/lib/actions'
-import { useRef } from 'react'
+import { User } from '@/lib/types'
+import { SetStateAction, useRef } from 'react'
 
 type AddReplyType = {
     idLoggedUser?: string
     parentId: string
-    setReplyForm: any
-    nameOfAuthor: any
+    setReplyForm: (value: boolean) => void
+    nameOfAuthor: User[]
 }
 
 export default function AddReply({
@@ -17,7 +18,6 @@ export default function AddReply({
     setReplyForm,
     nameOfAuthor,
 }: AddReplyType) {
-
     const formRef = useRef<HTMLFormElement>(null)
     const { addReply } = translations
 

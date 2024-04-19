@@ -7,11 +7,7 @@ type DeleteItType = {
     variant: 'comment' | 'reply'
 }
 
-export default function DeleteIt({
-    id,
-    replyId,
-    variant,
-}: DeleteItType) {
+export default function DeleteIt({ id, replyId, variant }: DeleteItType) {
     const deleteThisShit = id && deleteComment.bind(null, id, variant)
     const deleteThisReply =
         replyId && deleteComment.bind(null, replyId, variant)

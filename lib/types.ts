@@ -22,7 +22,7 @@ export type User = {
     email: string
     createdAt: Date
     updatedAt: Date
-    avatar?: string
+    avatar?: string | null | undefined
     comments?: Comment[]
     replies?: Reply[]
 }

@@ -16,7 +16,7 @@ type SingleCommentType = {
     nameLoggedUser?: string
     comment?: Comment
     commentReplies?: Reply[]
-    users: User[]
+    users?: User[]
 }
 
 export default function SingleComment({
@@ -28,7 +28,8 @@ export default function SingleComment({
 }: SingleCommentType) {
     const [replyForm, setReplyForm] = useState<boolean>(false)
     const [authorOfId, setAuthorOfId] = useState<string>('')
-    const nameOfAuthor = users && users.filter((user) => user.id === authorOfId)
+    const nameOfAuthor: User[] | undefined =
+        users && users.filter((user) => user.id === authorOfId)
 
     return (
         <div>
@@ -42,7 +43,7 @@ export default function SingleComment({
                 replyForm={replyForm}
                 setReplyForm={setReplyForm}
             />
-            {replyForm && comment ? (
+            {replyForm && comment && nameOfAuthor ? (
                 <AddReply
                     idLoggedUser={idLoggedUser}
                     nameOfAuthor={nameOfAuthor}

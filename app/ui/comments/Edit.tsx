@@ -1,8 +1,9 @@
 import { translations } from '@/constants/translations'
 import { updateContent } from '@/lib/actions'
+import { Dispatch, SetStateAction } from 'react'
 
 type EditType = {
-    setEditState?: any
+    setEditState: (value: boolean) => void
     id?: string
     replyId?: string
     variant: string

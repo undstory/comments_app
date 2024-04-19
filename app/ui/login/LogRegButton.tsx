@@ -1,6 +1,6 @@
 'use client'
 
-import { translations } from '@/constants/translations';
+import { translations } from '@/constants/translations'
 import { useFormStatus } from 'react-dom'
 
 export default function LogRegButton({
@@ -9,7 +9,7 @@ export default function LogRegButton({
     variant: 'login' | 'register'
 }) {
     const { pending } = useFormStatus()
-    const { loginWord, registerWord } = translations;
+    const { loginWord, registerWord } = translations
 
     return (
         <button type="submit">
