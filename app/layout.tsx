@@ -1,7 +1,10 @@
 import Providers from '@/providers/Providers'
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
-import Link from 'next/link'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { ThemeProvider } from '@mui/material/styles'
+import theme from '@/theme/theme'
+import { CssBaseline } from '@mui/material'
 
 const rubik = Rubik({ subsets: ['latin'] })
 
@@ -17,8 +20,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={rubik.className}>
-                <Providers>{children}</Providers>
+            <body style={{ margin: 0, padding: 0 }} className={rubik.className}>
+                <AppRouterCacheProvider>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <Providers>{children}</Providers>
+                    </ThemeProvider>
+                </AppRouterCacheProvider>
             </body>
         </html>
     )
