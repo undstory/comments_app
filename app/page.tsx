@@ -27,6 +27,14 @@ export default function Home() {
                 alignItems: 'center',
             }}
         >
+            <Typography
+                variant="body2"
+                sx={{ color: '#fff', fontWeight: 700 }}
+                component="h1"
+            >
+                {commentsApp}
+            </Typography>
+
             <Card
                 sx={{
                     px: 3,
@@ -39,12 +47,14 @@ export default function Home() {
                 <CardContent>
                     <Typography
                         component="h2"
-                        variant="h3"
+                        variant="h5"
                         textAlign="center"
                         pb={2}
+                        sx={{ fontWeight: '700' }}
                     >
-                        {commentsApp}
+                        {commentsApp.toLowerCase()}
                     </Typography>
+
                     <CardActions
                         sx={{
                             display: 'flex',

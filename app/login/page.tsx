@@ -17,7 +17,7 @@ import {
 
 export default function LoginPage() {
     const [errorMessage, dispatch] = useFormState(authenticate, undefined)
-    const { cancelWord, loginWord } = translations
+    const { cancelWord, loginWord, commentsApp } = translations
     return (
         <Container
             maxWidth={false}
@@ -34,6 +34,13 @@ export default function LoginPage() {
                 alignItems: 'center',
             }}
         >
+            <Typography
+                variant="body2"
+                sx={{ color: '#fff', fontWeight: 700 }}
+                component="h1"
+            >
+                {commentsApp}
+            </Typography>
             <Card
                 sx={{
                     px: 3,

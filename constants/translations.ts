@@ -2,7 +2,7 @@ export const translations = {
     commentsApp: 'Comments App',
     helloWord: 'Hello, ',
     signOutOption: 'Sign out',
-    noData: 'No data',
+    noData: 'Sorry, data got lost somewhere...',
     addComment: 'Add comment',
     addReply: 'Reply',
     edit: 'Edit',

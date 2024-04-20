@@ -12,7 +12,7 @@ import {
     Typography,
 } from '@mui/material'
 export default function RegisterPage() {
-    const { cancelWord, registerWord } = translations
+    const { cancelWord, registerWord, commentsApp } = translations
     return (
         <Container
             maxWidth={false}
@@ -29,6 +29,14 @@ export default function RegisterPage() {
                 alignItems: 'center',
             }}
         >
+            <Typography
+                variant="body2"
+                sx={{ color: '#fff', fontWeight: 700 }}
+                component="h1"
+            >
+                {commentsApp}
+            </Typography>
+
             <Card
                 sx={{
                     px: 3,
