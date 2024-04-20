@@ -23,8 +23,14 @@ export default function CommentsSection({
 }: CommentsSectionType) {
     const { noData } = translations
     return (
-        <Stack direction="column" justifyContent="center"
-        alignItems="center" spacing="10px" component="section" sx={{ py: 5, px: 2}}>
+        <Stack
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing="10px"
+            component="section"
+            sx={{ py: 5, px: 2 }}
+        >
             {comments && comments.length > 0 ? (
                 comments?.map((comment: Comment) => {
                     const commentReplies: Reply[] | undefined =

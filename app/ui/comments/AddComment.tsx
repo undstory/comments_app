@@ -2,6 +2,7 @@
 
 import { translations } from '@/constants/translations'
 import { createComment } from '@/lib/actions'
+import { FormControl, Box, Button } from '@mui/material'
 import { useRef } from 'react'
 
 export default function AddComment({
@@ -13,18 +14,33 @@ export default function AddComment({
     const { addComment } = translations
 
     return (
-        <div>
-            <form
+        <Box>
+            <FormControl
                 ref={formRef}
                 action={async (formData: FormData) => {
                     await createComment(formData, idLoggedUser)
                     formRef?.current?.reset()
                 }}
+                component="form"
+                sx={{ display: "flex", justifyContent: "center", alignItems: "center"}}
             >
                 <textarea name="content"></textarea>
-
-                <button type="submit">{addComment}</button>
-            </form>
-        </div>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    size="small"
+                    sx={{
+                        pl: 0.5,
+                        bgcolor: 'hsl(358, 79%, 66%)',
+                        color: 'hsl(0, 0%, 100%)',
+                        fontWeight: '500',
+                        width: 80,
+                        p: 1,
+                    }}
+                >
+                    {addComment}
+                </Button>
+            </FormControl>
+        </Box>
     )
 }
