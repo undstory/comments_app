@@ -22,7 +22,7 @@ export default function AddComment({
                     formRef?.current?.reset()
                 }}
                 component="form"
-                sx={{ display: "flex", justifyContent: "center", alignItems: "center"}}
+                sx={{ display: "flex", gap: "10px", flexDirection:"row", justifyContent: "center", alignItems: "center"}}
             >
                 <textarea name="content"></textarea>
                 <Button
@@ -34,7 +34,6 @@ export default function AddComment({
                         bgcolor: 'hsl(358, 79%, 66%)',
                         color: 'hsl(0, 0%, 100%)',
                         fontWeight: '500',
-                        width: 80,
                         p: 1,
                     }}
                 >
