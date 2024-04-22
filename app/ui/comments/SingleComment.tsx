@@ -6,10 +6,11 @@ import DeleteIt from './DeleteIt'
 import { boolean } from 'zod'
 import { useEffect, useState } from 'react'
 import AddComment from './AddComment'
-import Card from './Card'
+import CardBox from './CardBox'
 import AddReply from './AddReply'
 import AddReplyToReply from './AddReplyToReply'
 import SingleReply from './SingleReply'
+import { Box } from '@mui/material'
 
 type SingleCommentType = {
     idLoggedUser?: string
@@ -32,8 +33,8 @@ export default function SingleComment({
         users && users.filter((user) => user.id === authorOfId)
 
     return (
-        <div>
-            <Card
+        <Box>
+            <CardBox
                 variant="comment"
                 authorOfId={authorOfId}
                 setAuthorOfId={setAuthorOfId}
@@ -51,7 +52,7 @@ export default function SingleComment({
                     setReplyForm={setReplyForm}
                 />
             ) : null}
-            <div>
+            <Box>
                 {commentReplies && commentReplies.length > 0
                     ? commentReplies.map((reply: Reply) => {
                           return (
@@ -64,7 +65,7 @@ export default function SingleComment({
                           )
                       })
                     : null}
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }

@@ -36,7 +36,7 @@ export default function LoginPage() {
         >
             <Typography
                 variant="body2"
-                sx={{ color: '#fff', fontWeight: 700 }}
+                sx={{ color: 'hsl(0, 0%, 100%)', fontWeight: 700 }}
                 component="h1"
             >
                 {commentsApp}

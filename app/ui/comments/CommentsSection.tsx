@@ -27,7 +27,7 @@ export default function CommentsSection({
             direction="column"
             justifyContent="center"
             alignItems="center"
-            spacing="10px"
+            spacing="20px"
             component="section"
             sx={{ py: 5, px: 2 }}
         >

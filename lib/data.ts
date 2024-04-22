@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import prisma from '../lib/prisma'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { translations } from '@/constants/translations'
 
 export const fetchComments = async () => {

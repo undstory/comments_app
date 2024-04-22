@@ -1,7 +1,8 @@
 import { Reply, User } from '@/lib/types'
 import AddReplyToReply from './AddReplyToReply'
-import Card from './Card'
+import CardBox from './CardBox'
 import { useState } from 'react'
+import { Box } from '@mui/material'
 
 type SingleReplyType = {
     idLoggedUser?: string
@@ -20,8 +21,8 @@ export default function SingleReply({
         users && users.filter((user) => user.id === authorOfId)
 
     return (
-        <div>
-            <Card
+        <Box sx={{ display: "flex", flexDirection: "column", my: 4, justifyContent: "flex-end", alignItems: "flex-end"}}>
+            <CardBox
                 variant="reply"
                 authorOfId={authorOfId}
                 setAuthorOfId={setAuthorOfId}
@@ -39,6 +40,6 @@ export default function SingleReply({
                     setReplyToReplyForm={setReplyToReplyForm}
                 />
             ) : null}
-        </div>
+        </Box>
     )
 }
