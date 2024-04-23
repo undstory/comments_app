@@ -105,9 +105,7 @@ export default function MainPage({
                 replies={replies}
                 users={users}
             />
-            {comments && comments.length ? (
-                <AddComment idLoggedUser={idLoggedUser} />
-            ) : null}
+            <AddComment idLoggedUser={idLoggedUser} />
         </Container>
     )
 }

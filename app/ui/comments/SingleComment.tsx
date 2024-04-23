@@ -33,7 +33,7 @@ export default function SingleComment({
         users && users.filter((user) => user.id === authorOfId)
 
     return (
-        <Box sx={{ mt: "10px"}}>
+        <Box sx={{ mt: '10px' }}>
             <CardBox
                 variant="comment"
                 authorOfId={authorOfId}

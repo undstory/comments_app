@@ -48,6 +48,7 @@ export default function CardBox({
     const [editState, setEditState] = useState<boolean>(false)
     const { content, id, authorId, score } = comment || {}
     const theme = useTheme()
+    const { you } = translations;
     const {
         content: replyContent,
         id: replyId,
@@ -203,6 +204,11 @@ padding: 6px 0 6px 8px;
                                 {authorOfReply && authorOfReply[0].username}
                             </Typography>
                         )}
+                        { authorOfComment && authorOfComment[0].id === idLoggedUser || authorOfReply && authorOfReply[0].id === idLoggedUser ? (
+                        <Typography sx={{ color: theme.palette.primary.light, bgcolor: theme.palette.secondary.contrastText, px: '6px', borderRadius: '2px', fontSize: '12px', lineHeight: 1.6}}>
+                            {you}
+                        </Typography>
+                        ) : null }
                         <Typography
                             sx={{
                                 color: 'hsl(211, 10%, 45%)',

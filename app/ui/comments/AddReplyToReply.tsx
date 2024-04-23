@@ -69,22 +69,22 @@ export default function AddReplyToReply({
                         name="content"
                         defaultValue={`@${nameOfAuthor[0].username}, `}
                     />
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            size="small"
-                            sx={{
-                                pl: 0.5,
-                                bgcolor: theme.palette.secondary.contrastText,
-                                color: theme.palette.primary.light,
-                                fontWeight: '500',
-                                p: 1,
-                                ml: '12px',
-                                alignSelf: 'flex-start',
-                            }}
-                        >
-                            {addReply}
-                        </Button>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        size="small"
+                        sx={{
+                            pl: 0.5,
+                            bgcolor: theme.palette.secondary.contrastText,
+                            color: theme.palette.primary.light,
+                            fontWeight: '500',
+                            p: 1,
+                            ml: '12px',
+                            alignSelf: 'flex-start',
+                        }}
+                    >
+                        {addReply}
+                    </Button>
                 </FormControl>
             </Box>
         </Card>

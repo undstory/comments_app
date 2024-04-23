@@ -9,6 +9,7 @@ export const translations = {
     update: 'Update',
     deleteIt: 'Delete',
     send: 'Send',
+    you: 'you',
     registerText: 'If you have not an account yet, please register',
     hereWord: 'here',
     cancelWord: 'Cancel',

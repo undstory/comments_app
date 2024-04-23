@@ -31,7 +31,7 @@ export default function AddComment({
                 py: 3,
                 px: 2,
                 alignItems: 'flex-start',
-                m: '0 auto 90px'
+                m: '0 auto 90px',
             }}
         >
             <Avatar sx={{ width: 36, height: 36 }} alt="image of author" />
