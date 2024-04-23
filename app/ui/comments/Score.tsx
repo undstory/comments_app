@@ -1,11 +1,13 @@
-import { Typography } from '@mui/material'
+'use client'
+import { Typography, useTheme } from '@mui/material'
 
 export default function Score({ scoreValue }: { scoreValue?: number }) {
+    const theme = useTheme();
     return (
         <Typography
             sx={{
                 fontSize: '14px',
-                color: 'hsl(238, 40%, 52%)',
+                color: theme.palette.secondary.contrastText,
                 fontWeight: '600',
             }}
         >

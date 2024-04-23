@@ -10,16 +10,18 @@ import {
     FormControl,
     TextField,
     Typography,
+    useTheme,
 } from '@mui/material'
 export default function RegisterPage() {
     const { cancelWord, registerWord, commentsApp } = translations
+    const theme = useTheme();
     return (
         <Container
             maxWidth={false}
             disableGutters
             sx={{
-                bgcolor: 'hsl(223, 19%, 93%)',
-                color: 'hsl(212, 24%, 26%)',
+                bgcolor: theme.palette.secondary.main,
+                color: theme.palette.primary.main,
                 p: 0,
                 m: 0,
                 height: '100vh',
@@ -31,7 +33,7 @@ export default function RegisterPage() {
         >
             <Typography
                 variant="body2"
-                sx={{ color: '#fff', fontWeight: 700 }}
+                sx={{ color: theme.palette.primary.light, fontWeight: 700 }}
                 component="h1"
             >
                 {commentsApp}
@@ -41,7 +43,7 @@ export default function RegisterPage() {
                 sx={{
                     px: 3,
                     py: 2,
-                    bgcolor: 'hsl(0, 0%, 100%)',
+                    bgcolor: theme.palette.primary.light,
                     width: 345,
                     m: 2,
                 }}
@@ -113,8 +115,8 @@ export default function RegisterPage() {
                             variant="contained"
                             size="small"
                             sx={{
-                                bgcolor: 'hsl(228, 33%, 97%)',
-                                color: 'hsl(212, 24%, 26%)',
+                                bgcolor: theme.palette.secondary.light,
+                                color: theme.palette.primary.main,
                                 fontWeight: '500',
                                 width: 80,
                                 p: 1,

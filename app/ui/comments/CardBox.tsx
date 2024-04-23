@@ -130,7 +130,7 @@ padding: 6px 0 6px 8px;
     return (
         <Card
             sx={{
-                bgcolor: 'hsl(0, 0%, 100%)',
+                bgcolor: theme.palette.primary.light,
                 width: variant === "comment" ? '620px' : "580px",
                 minHeight: '120px',
                 display: 'flex',
@@ -144,7 +144,7 @@ padding: 6px 0 6px 8px;
                 justifyContent="space-between"
                 alignItems="center"
                 sx={{
-                    bgcolor: 'hsl(223, 19%, 93%)',
+                    bgcolor: theme.palette.secondary.main,
                     pt: 1,
                     pb: 1.5,
                     px: 1,
@@ -188,7 +188,7 @@ padding: 6px 0 6px 8px;
                             <Typography
                                 sx={{
                                     fontWeight: '700',
-                                    color: 'hsl(212, 24%, 26%)',
+                                    color: theme.palette.primary.main,
                                 }}
                             >
                                 {authorOfComment && authorOfComment[0].username}
@@ -198,7 +198,7 @@ padding: 6px 0 6px 8px;
                             <Typography
                                 sx={{
                                     fontWeight: '700',
-                                    color: 'hsl(212, 24%, 26%)',
+                                    color: theme.palette.primary.main,
                                 }}
                             >
                                 {authorOfReply && authorOfReply[0].username}
@@ -211,7 +211,7 @@ padding: 6px 0 6px 8px;
                         ) : null }
                         <Typography
                             sx={{
-                                color: 'hsl(211, 10%, 45%)',
+                                color: theme.palette.secondary.dark,
                                 fontSize: '14px',
                             }}
                         >
@@ -226,7 +226,7 @@ padding: 6px 0 6px 8px;
                                     variant="text"
                                     sx={{
                                         textTransform: 'none',
-                                        color: 'hsl(238, 40%, 52%)',
+                                        color: theme.palette.secondary.contrastText,
                                     }}
                                     onClick={handleReplyToReplyForm}
                                 >
@@ -239,7 +239,7 @@ padding: 6px 0 6px 8px;
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
-                                    color: 'hsl(238, 40%, 52%)',
+                                    color: theme.palette.secondary.contrastText,
                                 }}
                                 onClick={handleReplyForm}
                             >
@@ -267,7 +267,7 @@ padding: 6px 0 6px 8px;
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
-                                    color: 'hsl(238, 40%, 52%)',
+                                    color: theme.palette.secondary.contrastText,
                                 }}
                                 onClick={() => setEditState(!editState)}
                             >
@@ -281,7 +281,7 @@ padding: 6px 0 6px 8px;
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
-                                    color: 'hsl(238, 40%, 52%)',
+                                    color: theme.palette.secondary.contrastText,
                                 }}
                                 onClick={() => setEditState(!editState)}
                             >

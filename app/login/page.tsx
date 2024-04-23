@@ -13,18 +13,20 @@ import {
     FormControl,
     TextField,
     Box,
+    useTheme,
 } from '@mui/material'
 
 export default function LoginPage() {
     const [errorMessage, dispatch] = useFormState(authenticate, undefined)
     const { cancelWord, loginWord, commentsApp } = translations
+    const theme = useTheme();
     return (
         <Container
             maxWidth={false}
             disableGutters
             sx={{
-                bgcolor: 'hsl(223, 19%, 93%)',
-                color: 'hsl(212, 24%, 26%)',
+                bgcolor: theme.palette.secondary.main,
+                color: theme.palette.primary.main,
                 p: 0,
                 m: 0,
                 height: '100vh',
@@ -36,7 +38,7 @@ export default function LoginPage() {
         >
             <Typography
                 variant="body2"
-                sx={{ color: 'hsl(0, 0%, 100%)', fontWeight: 700 }}
+                sx={{ color: theme.palette.primary.light, fontWeight: 700 }}
                 component="h1"
             >
                 {commentsApp}
@@ -45,7 +47,7 @@ export default function LoginPage() {
                 sx={{
                     px: 3,
                     py: 2,
-                    bgcolor: 'hsl(0, 0%, 100%)',
+                    bgcolor: theme.palette.primary.light,
                     width: 345,
                     m: 2,
                 }}
@@ -97,7 +99,7 @@ export default function LoginPage() {
                             <Typography
                                 sx={{
                                     fontSize: 12,
-                                    color: 'hsl(358, 79%, 66%)',
+                                    color: theme.palette.primary.contrastText,
                                     fontWeight: '500',
                                 }}
                             >
@@ -119,8 +121,8 @@ export default function LoginPage() {
                             variant="contained"
                             size="small"
                             sx={{
-                                bgcolor: 'hsl(228, 33%, 97%)',
-                                color: 'hsl(212, 24%, 26%)',
+                                bgcolor: theme.palette.secondary.light,
+                                color: theme.palette.primary.main,
                                 fontWeight: '500',
                                 width: 80,
                                 p: 1,

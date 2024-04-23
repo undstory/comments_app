@@ -1,7 +1,7 @@
 'use client'
 
 import { translations } from '@/constants/translations'
-import { Button } from '@mui/material'
+import { Button, useTheme } from '@mui/material'
 import { useFormStatus } from 'react-dom'
 
 export default function LogRegButton({
@@ -11,6 +11,7 @@ export default function LogRegButton({
 }) {
     const { pending } = useFormStatus()
     const { loginWord, registerWord } = translations
+    const theme = useTheme();
 
     return (
         <Button
@@ -18,8 +19,8 @@ export default function LogRegButton({
             size="small"
             sx={{
                 pl: 0.5,
-                bgcolor: 'hsl(358, 79%, 66%)',
-                color: 'hsl(0, 0%, 100%)',
+                bgcolor: theme.palette.primary.contrastText,
+                color: theme.palette.primary.light,
                 fontWeight: '500',
                 width: 80,
                 p: 1,
