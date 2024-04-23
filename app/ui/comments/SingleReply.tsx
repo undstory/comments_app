@@ -21,7 +21,7 @@ export default function SingleReply({
         users && users.filter((user) => user.id === authorOfId)
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", my: 4, justifyContent: "flex-end", alignItems: "flex-end"}}>
+        <Box sx={{ display: "flex", flexDirection: "column", mt: '10px', justifyContent: "flex-end", alignItems: "flex-end"}}>
             <CardBox
                 variant="reply"
                 authorOfId={authorOfId}

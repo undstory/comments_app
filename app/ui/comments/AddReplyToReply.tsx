@@ -34,7 +34,7 @@ export default function AddReplyToReply({
         <Card
             sx={{
                 display: 'flex',
-                width: '620px',
+                width: '580px',
                 py: 3,
                 px: 2,
                 mt: '10px',
@@ -56,7 +56,7 @@ export default function AddReplyToReply({
                         flexDirection: 'row',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        width: '532px',
+                        width: '492px',
                         mx: '12px',
                     }}
                 >
