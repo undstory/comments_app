@@ -1,3 +1,4 @@
+'use client'
 import { translations } from '@/constants/translations'
 import {
     Card,
@@ -6,18 +7,20 @@ import {
     Typography,
     Button,
     CardActions,
+    useTheme,
 } from '@mui/material'
 import NextLink from 'next/link'
 
 export default function Home() {
     const { commentsApp, loginWord, registerWord } = translations
+    const theme = useTheme()
     return (
         <Container
             maxWidth={false}
             disableGutters
             sx={{
-                bgcolor: 'hsl(223, 19%, 93%)',
-                color: 'hsl(212, 24%, 26%)',
+                bgcolor: theme.palette.secondary.main,
+                color: theme.palette.primary.main,
                 p: 0,
                 m: 0,
                 height: '100vh',
@@ -29,7 +32,7 @@ export default function Home() {
         >
             <Typography
                 variant="body2"
-                sx={{ color: '#fff', fontWeight: 700 }}
+                sx={{ color: theme.palette.primary.light, fontWeight: 700 }}
                 component="h1"
             >
                 {commentsApp}
@@ -39,7 +42,7 @@ export default function Home() {
                 sx={{
                     px: 3,
                     py: 2,
-                    bgcolor: 'hsl(0, 0%, 100%)',
+                    bgcolor: theme.palette.primary.light,
                     maxWidth: 345,
                     m: 2,
                 }}
@@ -50,7 +53,7 @@ export default function Home() {
                         variant="h5"
                         textAlign="center"
                         pb={2}
-                        sx={{ fontWeight: '700' }}
+                        sx={{ fontWeight: '700', color: theme.palette.primary.main }}
                     >
                         {commentsApp.toLowerCase()}
                     </Typography>
@@ -70,11 +73,14 @@ export default function Home() {
                             href="/login"
                             sx={{
                                 pl: 0.5,
-                                bgcolor: 'hsl(358, 79%, 66%)',
-                                color: 'hsl(0, 0%, 100%)',
+                                bgcolor: theme.palette.primary.contrastText,
+                                color: theme.palette.primary.light,
                                 fontWeight: '500',
                                 width: 100,
                                 p: 1,
+                                ':hover': {
+                                    bgcolor: theme.palette.info.contrastText,
+                                  },
                             }}
                         >
                             {loginWord}
@@ -86,11 +92,14 @@ export default function Home() {
                             href="/register"
                             sx={{
                                 pl: 0.5,
-                                bgcolor: 'hsl(358, 79%, 66%)',
-                                color: 'hsl(0, 0%, 100%)',
+                                bgcolor: theme.palette.primary.contrastText,
+                                color: theme.palette.primary.light,
                                 fontWeight: '500',
                                 width: 100,
                                 p: 1,
+                                ':hover': {
+                                    bgcolor: theme.palette.info.contrastText,
+                                  },
                             }}
                         >
                             {registerWord}

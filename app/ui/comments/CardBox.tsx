@@ -9,14 +9,15 @@ import {
     Button,
     Card,
     CardContent,
-    Icon,
-    SvgIcon,
+
     Typography,
     styled,
     useTheme,
 } from '@mui/material'
 import Image from 'next/image'
 import Score from './Score'
+import ReplyIcon from '../svgicons/ReplyIcon';
+import EditIcon from '../svgicons/EditIcon';
 
 type CardType = {
     variant: 'comment' | 'reply'
@@ -47,6 +48,7 @@ export default function CardBox({
 }: CardType) {
     const [editState, setEditState] = useState<boolean>(false)
     const { content, id, authorId, score } = comment || {}
+    const [ hover, setHover] = useState(false)
     const theme = useTheme()
     const { you } = translations;
     const {
@@ -70,27 +72,8 @@ export default function CardBox({
         users && reply && users.filter((user) => user.id === replyAuthorId)
     const { addReply, edit } = translations
 
-    const ReplyIcon = () => {
-        return (
-            <Image
-                src="/images/icon-reply.svg"
-                width={10}
-                height={10}
-                alt="reply icon"
-            />
-        )
-    }
 
-    const EditIcon = () => {
-        return (
-            <Image
-                src="/images/icon-edit.svg"
-                width={10}
-                height={10}
-                alt="edit icon"
-            />
-        )
-    }
+
 
     const CardContentNoPadding = styled(CardContent)(`
   padding: 0;
@@ -222,12 +205,18 @@ padding: 6px 0 6px 8px;
                         {replyAuthorId !== idLoggedUser &&
                             variant === 'reply' && (
                                 <Button
-                                    startIcon={<ReplyIcon />}
+                                    startIcon={<ReplyIcon color={hover ? 'hsl(239, 57%, 85%)' : 'hsl(238, 40%, 52%)'}/> }
                                     variant="text"
                                     sx={{
                                         textTransform: 'none',
                                         color: theme.palette.secondary.contrastText,
+                                        ':hover': {
+                                            bgcolor: 'transparent',
+                                            color: theme.palette.info.main
+                                        }
                                     }}
+                                    onMouseEnter={() => setHover(true)}
+                                    onMouseLeave={() => setHover(false)}
                                     onClick={handleReplyToReplyForm}
                                 >
                                     {addReply}
@@ -235,13 +224,20 @@ padding: 6px 0 6px 8px;
                             )}
                         {authorId !== idLoggedUser && variant === 'comment' && (
                             <Button
-                                startIcon={<ReplyIcon />}
+
+                            startIcon={<ReplyIcon color={hover ? 'hsl(239, 57%, 85%)' : 'hsl(238, 40%, 52%)'}/> }
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main
+                                    }
                                 }}
                                 onClick={handleReplyForm}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
                             >
                                 {addReply}
                             </Button>
@@ -263,13 +259,19 @@ padding: 6px 0 6px 8px;
                         ) : null}
                         {authorId === idLoggedUser && variant === 'comment' ? (
                             <Button
-                                startIcon={<EditIcon />}
+                                startIcon={<EditIcon color={hover ? 'hsl(239, 57%, 85%)' : 'hsl(238, 40%, 52%)'} />}
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main
+                                    }
                                 }}
                                 onClick={() => setEditState(!editState)}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
                             >
                                 {edit}
                             </Button>
@@ -277,13 +279,19 @@ padding: 6px 0 6px 8px;
                         {replyAuthorId === idLoggedUser &&
                         variant === 'reply' ? (
                             <StyledButton
-                                startIcon={<EditIcon />}
+                                startIcon={<EditIcon color={hover ? 'hsl(239, 57%, 85%)' : 'hsl(238, 40%, 52%)'}/>}
                                 variant="text"
                                 sx={{
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main
+                                    }
                                 }}
                                 onClick={() => setEditState(!editState)}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
                             >
                                 {edit}
                             </StyledButton>

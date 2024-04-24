@@ -31,6 +31,7 @@ export default function MainPage({
 }: MainPageType) {
     const { commentsApp, helloWord, signOutOption } = translations
     const theme = useTheme()
+
     return (
         <Container
             maxWidth={false}
@@ -90,6 +91,9 @@ export default function MainPage({
                                 fontWeight: '500',
                                 width: 80,
                                 p: 1,
+                                ':hover': {
+                                    bgcolor: theme.palette.info.contrastText,
+                                  },
                             }}
                         >
                             {signOutOption}

@@ -126,6 +126,9 @@ export default function LoginPage() {
                                 fontWeight: '500',
                                 width: 80,
                                 p: 1,
+                                ':hover': {
+                                    color: theme.palette.secondary.main
+                                }
                             }}
                             component={NextLink}
                         >

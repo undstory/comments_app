@@ -1,3 +1,4 @@
+'use client';
 import { createNewUser } from '@/lib/actions'
 import NextLink from 'next/link'
 import LogRegButton from '../ui/login/LogRegButton'
@@ -120,6 +121,9 @@ export default function RegisterPage() {
                                 fontWeight: '500',
                                 width: 80,
                                 p: 1,
+                                ':hover': {
+                                    color: theme.palette.secondary.main
+                                }
                             }}
                             component={NextLink}
                         >

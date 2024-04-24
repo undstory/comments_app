@@ -10,7 +10,7 @@ import {
     TextField,
     Card,
     Avatar,
-    useTheme,
+    useTheme
 } from '@mui/material'
 import { useRef } from 'react'
 
@@ -72,6 +72,9 @@ export default function AddComment({
                             p: 1,
                             ml: '12px',
                             alignSelf: 'flex-start',
+                            ':hover': {
+                                backgroundColor: theme.palette.info.main,
+                              },
                         }}
                     >
                         {send}

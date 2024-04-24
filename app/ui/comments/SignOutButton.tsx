@@ -6,6 +6,7 @@ import { Button, useTheme } from '@mui/material'
 export default function SignOutButton() {
     const { signOutOption } = translations
     const theme = useTheme()
+
     return (
         <Button
             type="submit"
@@ -18,6 +19,9 @@ export default function SignOutButton() {
                 fontWeight: '500',
                 width: 80,
                 p: 1,
+                ':hover': {
+                  bgcolor: theme.palette.info.contrastText
+                },
             }}
         >
             {signOutOption}

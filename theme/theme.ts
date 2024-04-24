@@ -8,20 +8,6 @@ const rubik = Rubik({
     display: 'swap',
 })
 
-declare module '@mui/material/styles' {
-    interface Theme {
-        custom: {
-            main: string
-        }
-    }
-
-    interface ThemeOptions {
-        custom?: {
-            main: string
-        }
-    }
-}
-
 const theme: Theme = createTheme({
     palette: {
         primary: {
@@ -40,22 +26,8 @@ const theme: Theme = createTheme({
             contrastText: 'hsl(357, 100%, 86%)',
         },
     },
-    custom: {
-        main: '#ff0055',
-    },
     typography: {
         fontFamily: rubik.style.fontFamily,
-    },
-    components: {
-        MuiAlert: {
-            styleOverrides: {
-                root: ({ ownerState }) => ({
-                    ...(ownerState.severity === 'info' && {
-                        backgroundColor: '#60a5fa',
-                    }),
-                }),
-            },
-        },
     },
 })
 
