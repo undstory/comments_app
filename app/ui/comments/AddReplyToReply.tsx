@@ -82,8 +82,8 @@ export default function AddReplyToReply({
                             ml: '12px',
                             alignSelf: 'flex-start',
                             ':hover': {
-                                bgcolor: theme.palette.info.main
-                            }
+                                bgcolor: theme.palette.info.main,
+                            },
                         }}
                     >
                         {addReply}

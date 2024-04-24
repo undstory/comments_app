@@ -83,8 +83,8 @@ export default function AddReply({
                             ml: '12px',
                             alignSelf: 'flex-start',
                             ':hover': {
-                                bgcolor: theme.palette.info.main
-                            }
+                                bgcolor: theme.palette.info.main,
+                            },
                         }}
                     >
                         {addReply}

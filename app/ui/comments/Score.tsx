@@ -2,7 +2,7 @@
 import { Typography, useTheme } from '@mui/material'
 
 export default function Score({ scoreValue }: { scoreValue?: number }) {
-    const theme = useTheme();
+    const theme = useTheme()
     return (
         <Typography
             sx={{

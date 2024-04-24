@@ -93,7 +93,7 @@ export default function MainPage({
                                 p: 1,
                                 ':hover': {
                                     bgcolor: theme.palette.info.contrastText,
-                                  },
+                                },
                             }}
                         >
                             {signOutOption}

@@ -53,7 +53,10 @@ export default function Home() {
                         variant="h5"
                         textAlign="center"
                         pb={2}
-                        sx={{ fontWeight: '700', color: theme.palette.primary.main }}
+                        sx={{
+                            fontWeight: '700',
+                            color: theme.palette.primary.main,
+                        }}
                     >
                         {commentsApp.toLowerCase()}
                     </Typography>
@@ -80,7 +83,7 @@ export default function Home() {
                                 p: 1,
                                 ':hover': {
                                     bgcolor: theme.palette.info.contrastText,
-                                  },
+                                },
                             }}
                         >
                             {loginWord}
@@ -99,7 +102,7 @@ export default function Home() {
                                 p: 1,
                                 ':hover': {
                                     bgcolor: theme.palette.info.contrastText,
-                                  },
+                                },
                             }}
                         >
                             {registerWord}

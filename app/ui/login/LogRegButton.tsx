@@ -11,8 +11,7 @@ export default function LogRegButton({
 }) {
     const { pending } = useFormStatus()
     const { loginWord, registerWord } = translations
-    const theme = useTheme();
-
+    const theme = useTheme()
 
     return (
         <Button
@@ -27,7 +26,7 @@ export default function LogRegButton({
                 p: 1,
                 ':hover': {
                     bgcolor: theme.palette.info.contrastText,
-                  },
+                },
             }}
             type="submit"
         >

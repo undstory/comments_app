@@ -8,6 +8,11 @@ export const translations = {
     edit: 'Edit',
     update: 'Update',
     deleteIt: 'Delete',
+    deleteComment: 'Delete comment',
+    noCancel: 'No, cancel',
+    yesDelete: 'Yes, delete',
+    deleteText:
+        'Are you sure you want to delete this comment? This will remove the comment and cant be undone.',
     send: 'Send',
     you: 'you',
     registerText: 'If you have not an account yet, please register',

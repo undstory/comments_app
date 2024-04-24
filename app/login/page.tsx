@@ -19,7 +19,7 @@ import {
 export default function LoginPage() {
     const [errorMessage, dispatch] = useFormState(authenticate, undefined)
     const { cancelWord, loginWord, commentsApp } = translations
-    const theme = useTheme();
+    const theme = useTheme()
     return (
         <Container
             maxWidth={false}
@@ -127,8 +127,8 @@ export default function LoginPage() {
                                 width: 80,
                                 p: 1,
                                 ':hover': {
-                                    color: theme.palette.secondary.main
-                                }
+                                    color: theme.palette.secondary.main,
+                                },
                             }}
                             component={NextLink}
                         >

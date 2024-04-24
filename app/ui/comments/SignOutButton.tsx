@@ -20,7 +20,7 @@ export default function SignOutButton() {
                 width: 80,
                 p: 1,
                 ':hover': {
-                  bgcolor: theme.palette.info.contrastText
+                    bgcolor: theme.palette.info.contrastText,
                 },
             }}
         >
