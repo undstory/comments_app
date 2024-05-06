@@ -50,7 +50,9 @@ export default function CardBox({
     const [editState, setEditState] = useState<boolean>(false)
     const { content, id, authorId, score } = comment || {}
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
-    const [hover, setHover] = useState<boolean>(false)
+    const [deleteHover, setDeleteHover] = useState<boolean>(false)
+    const [editHover, setEditHover] = useState<boolean>(false)
+    const [replyHover, setReplyHover] = useState<boolean>(false)
     const theme = useTheme()
     const { you, deleteIt } = translations
     const {
@@ -210,7 +212,7 @@ padding: 6px 0 6px 8px;
                                     startIcon={
                                         <ReplyIcon
                                             color={
-                                                hover
+                                                replyHover
                                                     ? 'hsl(239, 57%, 85%)'
                                                     : 'hsl(238, 40%, 52%)'
                                             }
@@ -226,8 +228,8 @@ padding: 6px 0 6px 8px;
                                             color: theme.palette.info.main,
                                         },
                                     }}
-                                    onMouseEnter={() => setHover(true)}
-                                    onMouseLeave={() => setHover(false)}
+                                    onMouseEnter={() => setReplyHover(true)}
+                                    onMouseLeave={() => setReplyHover(false)}
                                     onClick={handleReplyToReplyForm}
                                 >
                                     {addReply}
@@ -238,7 +240,7 @@ padding: 6px 0 6px 8px;
                                 startIcon={
                                     <ReplyIcon
                                         color={
-                                            hover
+                                            replyHover
                                                 ? 'hsl(239, 57%, 85%)'
                                                 : 'hsl(238, 40%, 52%)'
                                         }
@@ -254,8 +256,8 @@ padding: 6px 0 6px 8px;
                                     },
                                 }}
                                 onClick={handleReplyForm}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
+                                onMouseEnter={() => setReplyHover(true)}
+                                onMouseLeave={() => setReplyHover(false)}
                             >
                                 {addReply}
                             </Button>
@@ -267,7 +269,7 @@ padding: 6px 0 6px 8px;
                                 startIcon={
                                     <DeleteIcon
                                         color={
-                                            hover
+                                            deleteHover
                                                 ? 'hsl(357, 100%, 86%)'
                                                 : 'hsl(358, 79%, 66%)'
                                         }
@@ -283,8 +285,8 @@ padding: 6px 0 6px 8px;
                                     },
                                 }}
                                 type="button"
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
+                                onMouseEnter={() => setDeleteHover(true)}
+                                onMouseLeave={() => setDeleteHover(false)}
                             >
                                 {deleteIt}
                             </Button>
@@ -297,7 +299,7 @@ padding: 6px 0 6px 8px;
                                 startIcon={
                                     <DeleteIcon
                                         color={
-                                            hover
+                                            deleteHover
                                                 ? 'hsl(357, 100%, 86%)'
                                                 : 'hsl(358, 79%, 66%)'
                                         }
@@ -313,8 +315,8 @@ padding: 6px 0 6px 8px;
                                     },
                                 }}
                                 type="button"
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
+                                onMouseEnter={() => setDeleteHover(true)}
+                                onMouseLeave={() => setDeleteHover(false)}
                             >
                                 {deleteIt}
                             </Button>
@@ -338,7 +340,7 @@ padding: 6px 0 6px 8px;
                                 startIcon={
                                     <EditIcon
                                         color={
-                                            hover
+                                            editHover
                                                 ? 'hsl(239, 57%, 85%)'
                                                 : 'hsl(238, 40%, 52%)'
                                         }
@@ -354,8 +356,8 @@ padding: 6px 0 6px 8px;
                                     },
                                 }}
                                 onClick={() => setEditState(!editState)}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
+                                onMouseEnter={() => setEditHover(true)}
+                                onMouseLeave={() => setEditHover(false)}
                             >
                                 {edit}
                             </Button>
@@ -366,7 +368,7 @@ padding: 6px 0 6px 8px;
                                 startIcon={
                                     <EditIcon
                                         color={
-                                            hover
+                                            editHover
                                                 ? 'hsl(239, 57%, 85%)'
                                                 : 'hsl(238, 40%, 52%)'
                                         }
@@ -382,8 +384,8 @@ padding: 6px 0 6px 8px;
                                     },
                                 }}
                                 onClick={() => setEditState(!editState)}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
+                                onMouseEnter={() => setEditHover(true)}
+                                onMouseLeave={() => setEditHover(false)}
                             >
                                 {edit}
                             </StyledButton>
