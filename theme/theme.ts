@@ -29,6 +29,26 @@ const theme: Theme = createTheme({
     typography: {
         fontFamily: rubik.style.fontFamily,
     },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-disabled': {
+                        pointerEvents: 'unset', // allow :hover styles to be triggered
+                        cursor: 'not-allowed', // and custom cursor can be defined without :hover state
+                    },
+                },
+                // styles applied when `startIcon` prop is set
+                // startIcon: {
+                //     // styles applied to the icon when disabled
+                //     '.Mui-disabled &': {
+                //         color: 'red',
+                //     },
+                //     color: 'yellow',
+                // },
+            },
+        },
+    },
 })
 
 export default theme

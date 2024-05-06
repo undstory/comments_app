@@ -14,12 +14,11 @@ import {
     useTheme,
 } from '@mui/material'
 
-
 import ReplyIcon from '../svgicons/ReplyIcon'
 import EditIcon from '../svgicons/EditIcon'
 import DeleteModal from './DeleteModal'
 import DeleteIcon from '../svgicons/DeleteIcon'
-import ScoreBox from './ScoreBox';
+import ScoreBox from './ScoreBox'
 
 type CardType = {
     variant: 'comment' | 'reply'
@@ -58,7 +57,7 @@ export default function CardBox({
         content: replyContent,
         id: replyId,
         authorId: replyAuthorId,
-        score: replyScore
+        score: replyScore,
     } = reply || {}
 
     const handleReplyForm = () => {
@@ -122,10 +121,22 @@ padding: 6px 0 6px 8px;
                 gap: '16px',
             }}
         >
-            {variant === "comment" ? (
-            <ScoreBox scoreValue={score} variant={variant} id={id} />
+            {variant === 'comment' ? (
+                <ScoreBox
+                    scoreValue={score}
+                    authorOfComment={authorOfComment}
+                    idLoggedUser={idLoggedUser}
+                    variant={variant}
+                    id={id}
+                />
             ) : (
-                <ScoreBox scoreValue={replyScore} variant={variant} id={replyId} />
+                <ScoreBox
+                    scoreValue={replyScore}
+                    authorOfReply={authorOfReply}
+                    idLoggedUser={idLoggedUser}
+                    variant={variant}
+                    id={replyId}
+                />
             )}
 
             <Box
