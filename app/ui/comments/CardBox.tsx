@@ -19,6 +19,7 @@ import EditIcon from '../svgicons/EditIcon'
 import DeleteModal from './DeleteModal'
 import DeleteIcon from '../svgicons/DeleteIcon'
 import ScoreBox from './ScoreBox'
+import moment from 'moment';
 
 type CardType = {
     variant: 'comment' | 'reply'
@@ -48,7 +49,7 @@ export default function CardBox({
     setReplyToReplyForm,
 }: CardType) {
     const [editState, setEditState] = useState<boolean>(false)
-    const { content, id, authorId, score } = comment || {}
+    const { content, id, authorId, score, createdAt } = comment || {}
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
     const [deleteHover, setDeleteHover] = useState<boolean>(false)
     const [editHover, setEditHover] = useState<boolean>(false)
@@ -60,12 +61,14 @@ export default function CardBox({
         id: replyId,
         authorId: replyAuthorId,
         score: replyScore,
+        createdAt: replyCreatedAt
     } = reply || {}
 
     const handleReplyForm = () => {
         setReplyForm && setReplyForm(() => !replyForm)
         authorId && setAuthorOfId(authorId)
     }
+    console.log(createdAt);
 
     const handleReplyToReplyForm = () => {
         setReplyToReplyForm && setReplyToReplyForm(() => !replyToReplyForm)
@@ -202,7 +205,7 @@ padding: 6px 0 6px 8px;
                                 fontSize: '14px',
                             }}
                         >
-                            1 week ago
+                            {variant==="comment" ? moment(createdAt).fromNow() : moment(replyCreatedAt).fromNow() }
                         </Typography>
                     </Box>
                     <Box display="flex" flexDirection="row">
