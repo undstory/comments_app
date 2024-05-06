@@ -39,13 +39,14 @@ const theme: Theme = createTheme({
                     },
                 },
                 // styles applied when `startIcon` prop is set
-                // startIcon: {
-                //     // styles applied to the icon when disabled
-                //     '.Mui-disabled &': {
-                //         color: 'red',
-                //     },
-                //     color: 'yellow',
-                // },
+                startIcon: {
+                    // styles applied to the icon when disabled
+                    // '.Mui-disabled &': {
+                    //     color: 'red',
+                    // },
+                    marginLeft: '0px',
+                    marginRight: '0px',
+                },
             },
         },
     },

@@ -13,6 +13,8 @@ import { useState } from 'react'
 import plusIcon from '@/public/images/icon-plus.svg'
 import { actualize } from '@/lib/actions'
 import { User } from '@/lib/types'
+import PlusIcon from '../svgicons/PlusIcon';
+import MinusIcon from '../svgicons/MinusIcon';
 
 export default function ScoreBox({
     scoreValue,
@@ -30,6 +32,8 @@ export default function ScoreBox({
     variant: 'comment' | 'reply'
 }) {
     const theme = useTheme()
+    const [plusHover, setPlusHover] = useState<boolean>(false)
+    const [minusHover, setMinusHover] = useState<boolean>(false)
     const [score, setScore] = useState<number>(scoreValue || 0)
     const actualizeScore = id && actualize.bind(null, score, id, variant)
     const upScore = () => {
@@ -57,6 +61,7 @@ export default function ScoreBox({
         >
             <FormControl component="form" action={actualizeScore}>
                 <Button
+                startIcon={<PlusIcon color={plusHover ? theme.palette.secondary.contrastText : theme.palette.info.main} />}
                     type="submit"
                     disabled={
                         (variant === 'comment' &&
@@ -68,13 +73,9 @@ export default function ScoreBox({
                     }
                     sx={{ ':hover': { bgcolor: 'transparent' } }}
                     onClick={upScore}
+                    onMouseEnter={() => setPlusHover(true)}
+                                    onMouseLeave={() => setPlusHover(false)}
                 >
-                    <Image
-                        src="/images/icon-plus.svg"
-                        width={10}
-                        height={10}
-                        alt="plus icon"
-                    />
                 </Button>
             </FormControl>
             <Typography
@@ -88,7 +89,8 @@ export default function ScoreBox({
             </Typography>
             <FormControl component="form" action={actualizeScore}>
                 <Button
-                    sx={{ ':hover': { bgcolor: 'transparent' }, "&.Mui-disabled": {cursor: 'not-allowed'} }}
+                startIcon={<MinusIcon color={ minusHover ? theme.palette.secondary.contrastText : theme.palette.info.main}/>}
+                    sx={{':hover': { bgcolor: 'transparent' }, "&.Mui-disabled": {cursor: 'not-allowed'} }}
                     type="submit"
                     onClick={downScore}
                     disabled={
@@ -99,14 +101,9 @@ export default function ScoreBox({
                             authorOfReply &&
                             authorOfReply[0].id === idLoggedUser)
                     }
-                >
-                    <Image
-                        src="/images/icon-minus.svg"
-                        width={10}
-                        height={3}
-                        alt="minus icon"
-                    />
-                </Button>
+                    onMouseEnter={() => setMinusHover(true)}
+                                    onMouseLeave={() => setMinusHover(false)}
+                />
             </FormControl>
         </Box>
     )

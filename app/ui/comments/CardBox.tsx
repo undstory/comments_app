@@ -213,13 +213,14 @@ padding: 6px 0 6px 8px;
                                         <ReplyIcon
                                             color={
                                                 replyHover
-                                                    ? 'hsl(239, 57%, 85%)'
-                                                    : 'hsl(238, 40%, 52%)'
+                                                    ? theme.palette.info.main
+                                                    : theme.palette.secondary.contrastText
                                             }
                                         />
                                     }
                                     variant="text"
                                     sx={{
+                                        gap: '5px',
                                         textTransform: 'none',
                                         color: theme.palette.secondary
                                             .contrastText,
@@ -241,13 +242,14 @@ padding: 6px 0 6px 8px;
                                     <ReplyIcon
                                         color={
                                             replyHover
-                                                ? 'hsl(239, 57%, 85%)'
-                                                : 'hsl(238, 40%, 52%)'
+                                            ? theme.palette.info.main
+                                            : theme.palette.secondary.contrastText
                                         }
                                     />
                                 }
                                 variant="text"
                                 sx={{
+                                    gap: '5px',
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
                                     ':hover': {
@@ -270,12 +272,13 @@ padding: 6px 0 6px 8px;
                                     <DeleteIcon
                                         color={
                                             deleteHover
-                                                ? 'hsl(357, 100%, 86%)'
-                                                : 'hsl(358, 79%, 66%)'
+                                            ? theme.palette.info.contrastText
+                                            : theme.palette.primary.contrastText
                                         }
                                     />
                                 }
                                 sx={{
+                                    gap: '5px',
                                     textTransform: 'none',
                                     color: theme.palette.primary.contrastText,
                                     fontSize: '600',
@@ -300,12 +303,13 @@ padding: 6px 0 6px 8px;
                                     <DeleteIcon
                                         color={
                                             deleteHover
-                                                ? 'hsl(357, 100%, 86%)'
-                                                : 'hsl(358, 79%, 66%)'
+                                                ? theme.palette.info.contrastText
+                                                : theme.palette.primary.contrastText
                                         }
                                     />
                                 }
                                 sx={{
+                                    gap: '5px',
                                     textTransform: 'none',
                                     color: theme.palette.primary.contrastText,
                                     fontSize: '600',
@@ -341,13 +345,14 @@ padding: 6px 0 6px 8px;
                                     <EditIcon
                                         color={
                                             editHover
-                                                ? 'hsl(239, 57%, 85%)'
-                                                : 'hsl(238, 40%, 52%)'
+                                            ? theme.palette.info.main
+                                            : theme.palette.secondary.contrastText
                                         }
                                     />
                                 }
                                 variant="text"
                                 sx={{
+                                    gap: '5px',
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
                                     ':hover': {
@@ -369,13 +374,14 @@ padding: 6px 0 6px 8px;
                                     <EditIcon
                                         color={
                                             editHover
-                                                ? 'hsl(239, 57%, 85%)'
-                                                : 'hsl(238, 40%, 52%)'
+                                            ? theme.palette.info.main
+                                            : theme.palette.secondary.contrastText
                                         }
                                     />
                                 }
                                 variant="text"
                                 sx={{
+                                    gap: '5px',
                                     textTransform: 'none',
                                     color: theme.palette.secondary.contrastText,
                                     ':hover': {
