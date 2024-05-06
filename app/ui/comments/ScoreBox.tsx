@@ -1,0 +1,75 @@
+'use client';
+
+import { Box, Button, FormControl, IconButton, Typography, useTheme } from "@mui/material";
+import Image from 'next/image'
+import { useState } from "react";
+import plusIcon from '@/public/images/icon-plus.svg'
+import { actualize } from "@/lib/actions";
+
+export default function ScoreBox({ scoreValue, id, variant}: {scoreValue?: number, id?: string, variant: "comment" | "reply"}) {
+  const theme = useTheme();
+  const [score, setScore] = useState<number>(scoreValue || 0)
+  const actualizeScore = id && actualize.bind(null, score, id, variant)
+  const upScore = () => {
+    if(score >=0 && score < 100)
+    setScore(score+1)
+  }
+  const downScore = () => {
+if(score > 0)
+
+   setScore(score-1)
+  }
+    return (
+          <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{
+                    bgcolor: theme.palette.secondary.main,
+                    pt: 1,
+                    pb: 1.5,
+                    px: 1,
+                    height: '80px',
+                    width: '25px',
+                    borderRadius: '7px',
+                }}
+            >
+                <FormControl
+                    component="form"
+                    action={actualizeScore}
+                >
+
+                <Button type="submit" sx={{ ':hover': {bgcolor: 'transparent'}}} onClick={upScore}>
+                <Image
+                    src="/images/icon-plus.svg"
+                    width={10}
+                    height={10}
+                    alt="plus icon"
+                    />
+                </Button>
+                </FormControl>
+                   <Typography
+            sx={{
+                fontSize: '14px',
+                color: theme.palette.secondary.contrastText,
+                fontWeight: '600',
+            }}
+        >
+            {score}
+        </Typography>
+        <FormControl
+                    component="form"
+                    action={actualizeScore}
+                >
+        <Button sx={{ ':hover': {bgcolor: 'transparent'}}} type="submit" onClick={downScore}>
+                <Image
+                    src="/images/icon-minus.svg"
+                    width={10}
+                    height={3}
+                    alt="minus icon"
+                />
+        </Button></FormControl>
+            </Box>
+    );
+}

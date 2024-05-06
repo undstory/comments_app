@@ -6,7 +6,11 @@ import { translations } from '@/constants/translations'
 export const fetchComments = async () => {
     const { noData } = translations
     try {
-        const comments = await prisma.comment.findMany()
+        const comments = await prisma.comment.findMany({
+            orderBy: {
+                createdAt: 'asc',
+            },
+        })
         return comments
     } catch (e) {
         console.log(noData, e)
@@ -16,7 +20,11 @@ export const fetchComments = async () => {
 export const fetchReplies = async () => {
     const { noData } = translations
     try {
-        const replies = await prisma.reply.findMany()
+        const replies = await prisma.reply.findMany({
+            orderBy: {
+                createdAt: 'asc',
+            },
+        })
         return replies
     } catch (e) {
         console.log(noData, e)
@@ -125,6 +133,38 @@ export const editContent = async (
             const reply = await prisma.reply.update({
                 data: {
                     content: newContent,
+                },
+                where: {
+                    id: id,
+                },
+            })
+            return reply
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const actualizeScore = async (
+    score: number,
+    id: string,
+    variant: 'comment' | 'reply'
+) => {
+    try {
+        if (variant === 'comment') {
+            const comment = await prisma.comment.update({
+                data: {
+                    score: score,
+                },
+                where: {
+                    id: id,
+                },
+            })
+            return comment
+        } else {
+            const reply = await prisma.reply.update({
+                data: {
+                    score: score,
                 },
                 where: {
                     id: id,

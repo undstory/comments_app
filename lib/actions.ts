@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import {
     addNewUser,
+    actualizeScore,
     createNewComment,
     createNewReply,
     editContent,
@@ -76,6 +77,15 @@ export async function createReply(
     if (!content || typeof content !== 'string') return
     if (id) await createNewReply(content, parentId, id)
 
+    revalidatePath('/comments')
+}
+
+export async function actualize(
+    score: number,
+    id: string,
+    variant: 'comment' | 'reply'
+) {
+    await actualizeScore(score, id, variant)
     revalidatePath('/comments')
 }
 

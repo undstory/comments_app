@@ -13,6 +13,8 @@ datasource db {
 model Comment {
   id        String     @default(cuid()) @id
   content   String
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   score     Int @default(0)
   author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
@@ -23,6 +25,8 @@ model Reply {
   id        String     @default(cuid()) @id
   content   String
   score     Int @default(0)
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
   parent    Comment @relation(fields: [parentId], references: [id], onDelete: Cascade)

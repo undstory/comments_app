@@ -13,12 +13,13 @@ import {
     styled,
     useTheme,
 } from '@mui/material'
-import Image from 'next/image'
-import Score from './Score'
+
+
 import ReplyIcon from '../svgicons/ReplyIcon'
 import EditIcon from '../svgicons/EditIcon'
 import DeleteModal from './DeleteModal'
 import DeleteIcon from '../svgicons/DeleteIcon'
+import ScoreBox from './ScoreBox';
 
 type CardType = {
     variant: 'comment' | 'reply'
@@ -57,6 +58,7 @@ export default function CardBox({
         content: replyContent,
         id: replyId,
         authorId: replyAuthorId,
+        score: replyScore
     } = reply || {}
 
     const handleReplyForm = () => {
@@ -120,35 +122,12 @@ padding: 6px 0 6px 8px;
                 gap: '16px',
             }}
         >
-            <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-                alignItems="center"
-                sx={{
-                    bgcolor: theme.palette.secondary.main,
-                    pt: 1,
-                    pb: 1.5,
-                    px: 1,
-                    height: '80px',
-                    width: '25px',
-                    borderRadius: '7px',
-                }}
-            >
-                <Image
-                    src="/images/icon-plus.svg"
-                    width={10}
-                    height={10}
-                    alt="plus icon"
-                />
-                <Score scoreValue={score} />
-                <Image
-                    src="/images/icon-minus.svg"
-                    width={10}
-                    height={3}
-                    alt="minus icon"
-                />
-            </Box>
+            {variant === "comment" ? (
+            <ScoreBox scoreValue={score} variant={variant} id={id} />
+            ) : (
+                <ScoreBox scoreValue={replyScore} variant={variant} id={replyId} />
+            )}
+
             <Box
                 display="flex"
                 flexDirection="column"
