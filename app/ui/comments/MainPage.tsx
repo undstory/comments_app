@@ -12,7 +12,6 @@ import {
 } from '@mui/material'
 import CommentsSection from './CommentsSection'
 import AddComment from './AddComment'
-import { signOut } from '@/auth'
 import { leave } from '@/lib/actions'
 
 type MainPageType = {
@@ -61,6 +60,15 @@ export default function MainPage({
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
+                sx={{
+                    flexDirection: {
+                        xs: 'column',
+                        md: 'row',
+                    },
+                    paddingTop: {
+                        xs: '10px',
+                    },
+                }}
             >
                 <Typography
                     variant="h5"
@@ -69,7 +77,20 @@ export default function MainPage({
                 >
                     {commentsApp.toUpperCase()}
                 </Typography>
-                <Box display="flex" alignItems="center" gap="20px">
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="20px"
+                    sx={{
+                        flexDirection: {
+                            xs: 'column',
+                            md: 'row',
+                        },
+                        paddingTop: {
+                            xs: '10px',
+                        },
+                    }}
+                >
                     <Typography variant="body1">
                         {' '}
                         {helloWord}

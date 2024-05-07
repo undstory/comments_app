@@ -13,8 +13,8 @@ import { useState } from 'react'
 import plusIcon from '@/public/images/icon-plus.svg'
 import { actualize } from '@/lib/actions'
 import { User } from '@/lib/types'
-import PlusIcon from '../svgicons/PlusIcon';
-import MinusIcon from '../svgicons/MinusIcon';
+import PlusIcon from '../svgicons/PlusIcon'
+import MinusIcon from '../svgicons/MinusIcon'
 
 export default function ScoreBox({
     scoreValue,
@@ -46,22 +46,51 @@ export default function ScoreBox({
     return (
         <Box
             display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
+            // justifyContent="space-between"
+            // alignItems="center"
             sx={{
                 bgcolor: theme.palette.secondary.main,
-                pt: 1,
-                pb: 1.5,
-                px: 1,
-                height: '80px',
-                width: '25px',
+                pt: {
+                    md: 1,
+                },
+                pb: {
+                    md: 1.5,
+                },
+                px: {
+                    md: 1,
+                },
+                height: {
+                    xs: '25px',
+                    md: '80px',
+                },
+                width: {
+                    md: '25px',
+                    xs: '80px',
+                },
                 borderRadius: '7px',
+                flexDirection: {
+                    md: 'column',
+                    xs: 'row',
+                },
+                justifyContent: {
+                    xs: 'space-between',
+                },
+                alignItems: {
+                    xs: 'center',
+                },
             }}
         >
             <FormControl component="form" action={actualizeScore}>
                 <Button
-                startIcon={<PlusIcon color={plusHover ? theme.palette.secondary.contrastText : theme.palette.info.main} />}
+                    startIcon={
+                        <PlusIcon
+                            color={
+                                plusHover
+                                    ? theme.palette.secondary.contrastText
+                                    : theme.palette.info.main
+                            }
+                        />
+                    }
                     type="submit"
                     disabled={
                         (variant === 'comment' &&
@@ -71,12 +100,16 @@ export default function ScoreBox({
                             authorOfReply &&
                             authorOfReply[0].id === idLoggedUser)
                     }
-                    sx={{ ':hover': { bgcolor: 'transparent' } }}
+                    sx={{
+                        ':hover': { bgcolor: 'transparent' },
+                        minWidth: {
+                            xs: '0px',
+                        },
+                    }}
                     onClick={upScore}
                     onMouseEnter={() => setPlusHover(true)}
-                                    onMouseLeave={() => setPlusHover(false)}
-                >
-                </Button>
+                    onMouseLeave={() => setPlusHover(false)}
+                ></Button>
             </FormControl>
             <Typography
                 sx={{
@@ -89,8 +122,22 @@ export default function ScoreBox({
             </Typography>
             <FormControl component="form" action={actualizeScore}>
                 <Button
-                startIcon={<MinusIcon color={ minusHover ? theme.palette.secondary.contrastText : theme.palette.info.main}/>}
-                    sx={{':hover': { bgcolor: 'transparent' }, "&.Mui-disabled": {cursor: 'not-allowed'} }}
+                    startIcon={
+                        <MinusIcon
+                            color={
+                                minusHover
+                                    ? theme.palette.secondary.contrastText
+                                    : theme.palette.info.main
+                            }
+                        />
+                    }
+                    sx={{
+                        ':hover': { bgcolor: 'transparent' },
+                        '&.Mui-disabled': { cursor: 'not-allowed' },
+                        minWidth: {
+                            xs: '0px',
+                        },
+                    }}
                     type="submit"
                     onClick={downScore}
                     disabled={
@@ -102,7 +149,7 @@ export default function ScoreBox({
                             authorOfReply[0].id === idLoggedUser)
                     }
                     onMouseEnter={() => setMinusHover(true)}
-                                    onMouseLeave={() => setMinusHover(false)}
+                    onMouseLeave={() => setMinusHover(false)}
                 />
             </FormControl>
         </Box>

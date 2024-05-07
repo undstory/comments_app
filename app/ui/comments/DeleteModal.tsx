@@ -41,9 +41,15 @@ export default function DeleteModal({
                     display: 'flex',
                     borderRadius: '10px',
                     p: 4,
+                    mx: {
+                        xs: '10px',
+                    },
                     flexDirection: 'column',
                     bgcolor: theme.palette.primary.light,
-                    width: '380px',
+                    width: {
+                        md: '380px',
+                        xs: '300px',
+                    },
                     height: 'auto',
                 }}
             >
@@ -64,6 +70,10 @@ export default function DeleteModal({
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: '16px',
+                        flexDirection: {
+                            md: 'row',
+                            xs: 'column',
+                        },
                     }}
                 >
                     <Button

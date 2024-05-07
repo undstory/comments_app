@@ -27,14 +27,27 @@ export default function AddComment({
         <Card
             sx={{
                 display: 'flex',
-                width: '620px',
+                width: {
+                    md: '620px',
+                    xs: '350px',
+                },
                 py: 3,
                 px: 2,
                 alignItems: 'flex-start',
                 m: '0 auto 90px',
             }}
         >
-            <Avatar sx={{ width: 36, height: 36 }} alt="image of author" />
+            <Avatar
+                sx={{
+                    width: 36,
+                    height: 36,
+                    display: {
+                        xs: 'none',
+                        md: 'flex',
+                    },
+                }}
+                alt="image of author"
+            />
             <Box sx={{ alignItems: 'flex-start' }}>
                 <FormControl
                     ref={formRef}
@@ -45,10 +58,16 @@ export default function AddComment({
                     component="form"
                     sx={{
                         display: 'flex',
-                        flexDirection: 'row',
+                        flexDirection: {
+                            md: 'row',
+                            xs: 'column',
+                        },
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        width: '532px',
+                        width: {
+                            md: '910px',
+                            xs: '300px',
+                        },
                         mx: '12px',
                     }}
                 >
@@ -60,25 +79,63 @@ export default function AddComment({
                         sx={{ width: '100%' }}
                         name="content"
                     />
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        size="small"
+                    <Box
                         sx={{
-                            pl: 0.5,
-                            bgcolor: theme.palette.secondary.contrastText,
-                            color: theme.palette.primary.light,
-                            fontWeight: '500',
-                            p: 1,
-                            ml: '12px',
-                            alignSelf: 'flex-start',
-                            ':hover': {
-                                backgroundColor: theme.palette.info.main,
+                            display: {
+                                xs: 'flex',
+                            },
+                            justifyContent: {
+                                xs: 'space-between',
+                            },
+                            alignItems: {
+                                xs: 'center',
+                            },
+                            width: {
+                                xs: 'inherit',
                             },
                         }}
                     >
-                        {send}
-                    </Button>
+                        <Avatar
+                            sx={{
+                                width: 36,
+                                height: 36,
+                                display: {
+                                    xs: 'flex',
+                                    md: 'none',
+                                },
+                                marginTop: {
+                                    xs: '10px',
+                                },
+                            }}
+                            alt="image of author"
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            size="small"
+                            sx={{
+                                pl: 0.5,
+                                bgcolor: theme.palette.secondary.contrastText,
+                                color: theme.palette.primary.light,
+                                fontWeight: '500',
+                                p: 1,
+                                ml: '12px',
+                                mt: {
+                                    md: '0px',
+                                    xs: '10px',
+                                },
+                                alignSelf: {
+                                    md: 'flex-start',
+                                    xs: 'flex-end',
+                                },
+                                ':hover': {
+                                    backgroundColor: theme.palette.info.main,
+                                },
+                            }}
+                        >
+                            {send}
+                        </Button>
+                    </Box>
                 </FormControl>
             </Box>
         </Card>

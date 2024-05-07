@@ -19,7 +19,7 @@ import EditIcon from '../svgicons/EditIcon'
 import DeleteModal from './DeleteModal'
 import DeleteIcon from '../svgicons/DeleteIcon'
 import ScoreBox from './ScoreBox'
-import moment from 'moment';
+import moment from 'moment'
 
 type CardType = {
     variant: 'comment' | 'reply'
@@ -61,14 +61,14 @@ export default function CardBox({
         id: replyId,
         authorId: replyAuthorId,
         score: replyScore,
-        createdAt: replyCreatedAt
+        createdAt: replyCreatedAt,
     } = reply || {}
 
     const handleReplyForm = () => {
         setReplyForm && setReplyForm(() => !replyForm)
         authorId && setAuthorOfId(authorId)
     }
-    console.log(createdAt);
+    console.log(createdAt)
 
     const handleReplyToReplyForm = () => {
         setReplyToReplyForm && setReplyToReplyForm(() => !replyToReplyForm)
@@ -119,31 +119,42 @@ padding: 6px 0 6px 8px;
         <Card
             sx={{
                 bgcolor: theme.palette.primary.light,
-                width: variant === 'comment' ? '620px' : '580px',
+                width: {
+                    md: variant === 'comment' ? '620px' : '580px',
+                    xs: variant === 'comment' ? '350px' : '320px',
+                },
                 minHeight: '120px',
                 display: 'flex',
                 p: 2.5,
                 gap: '16px',
             }}
         >
-            {variant === 'comment' ? (
-                <ScoreBox
-                    scoreValue={score}
-                    authorOfComment={authorOfComment}
-                    idLoggedUser={idLoggedUser}
-                    variant={variant}
-                    id={id}
-                />
-            ) : (
-                <ScoreBox
-                    scoreValue={replyScore}
-                    authorOfReply={authorOfReply}
-                    idLoggedUser={idLoggedUser}
-                    variant={variant}
-                    id={replyId}
-                />
-            )}
-
+            <Box
+                sx={{
+                    display: {
+                        xs: 'none',
+                        md: 'flex',
+                    },
+                }}
+            >
+                {variant === 'comment' ? (
+                    <ScoreBox
+                        scoreValue={score}
+                        authorOfComment={authorOfComment}
+                        idLoggedUser={idLoggedUser}
+                        variant={variant}
+                        id={id}
+                    />
+                ) : (
+                    <ScoreBox
+                        scoreValue={replyScore}
+                        authorOfReply={authorOfReply}
+                        idLoggedUser={idLoggedUser}
+                        variant={variant}
+                        id={replyId}
+                    />
+                )}
+            </Box>
             <Box
                 display="flex"
                 flexDirection="column"
@@ -205,10 +216,20 @@ padding: 6px 0 6px 8px;
                                 fontSize: '14px',
                             }}
                         >
-                            {variant==="comment" ? moment(createdAt).fromNow() : moment(replyCreatedAt).fromNow() }
+                            {variant === 'comment'
+                                ? moment(createdAt).fromNow()
+                                : moment(replyCreatedAt).fromNow()}
                         </Typography>
                     </Box>
-                    <Box display="flex" flexDirection="row">
+                    <Box
+                        flexDirection="row"
+                        sx={{
+                            display: {
+                                xs: 'none',
+                                md: 'flex',
+                            },
+                        }}
+                    >
                         {replyAuthorId !== idLoggedUser &&
                             variant === 'reply' && (
                                 <Button
@@ -217,7 +238,8 @@ padding: 6px 0 6px 8px;
                                             color={
                                                 replyHover
                                                     ? theme.palette.info.main
-                                                    : theme.palette.secondary.contrastText
+                                                    : theme.palette.secondary
+                                                          .contrastText
                                             }
                                         />
                                     }
@@ -245,8 +267,9 @@ padding: 6px 0 6px 8px;
                                     <ReplyIcon
                                         color={
                                             replyHover
-                                            ? theme.palette.info.main
-                                            : theme.palette.secondary.contrastText
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
                                         }
                                     />
                                 }
@@ -275,8 +298,10 @@ padding: 6px 0 6px 8px;
                                     <DeleteIcon
                                         color={
                                             deleteHover
-                                            ? theme.palette.info.contrastText
-                                            : theme.palette.primary.contrastText
+                                                ? theme.palette.info
+                                                      .contrastText
+                                                : theme.palette.primary
+                                                      .contrastText
                                         }
                                     />
                                 }
@@ -306,8 +331,10 @@ padding: 6px 0 6px 8px;
                                     <DeleteIcon
                                         color={
                                             deleteHover
-                                                ? theme.palette.info.contrastText
-                                                : theme.palette.primary.contrastText
+                                                ? theme.palette.info
+                                                      .contrastText
+                                                : theme.palette.primary
+                                                      .contrastText
                                         }
                                     />
                                 }
@@ -348,8 +375,9 @@ padding: 6px 0 6px 8px;
                                     <EditIcon
                                         color={
                                             editHover
-                                            ? theme.palette.info.main
-                                            : theme.palette.secondary.contrastText
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
                                         }
                                     />
                                 }
@@ -377,8 +405,9 @@ padding: 6px 0 6px 8px;
                                     <EditIcon
                                         color={
                                             editHover
-                                            ? theme.palette.info.main
-                                            : theme.palette.secondary.contrastText
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
                                         }
                                     />
                                 }
@@ -424,6 +453,257 @@ padding: 6px 0 6px 8px;
                             </Typography>
                         </CardContentNoPadding>
                     )}
+                </Box>
+                <Box
+                    sx={{
+                        display: {
+                            xs: 'flex',
+                        },
+                        justifyContent: {
+                            xs: 'space-between',
+                        },
+                        alignItems: {
+                            xs: 'center',
+                        },
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: {
+                                xs: 'flex',
+                                md: 'none',
+                            },
+                        }}
+                    >
+                        {variant === 'comment' ? (
+                            <ScoreBox
+                                scoreValue={score}
+                                authorOfComment={authorOfComment}
+                                idLoggedUser={idLoggedUser}
+                                variant={variant}
+                                id={id}
+                            />
+                        ) : (
+                            <ScoreBox
+                                scoreValue={replyScore}
+                                authorOfReply={authorOfReply}
+                                idLoggedUser={idLoggedUser}
+                                variant={variant}
+                                id={replyId}
+                            />
+                        )}
+                    </Box>
+                    <Box
+                        flexDirection="row"
+                        sx={{
+                            display: {
+                                xs: 'flex',
+                                md: 'none',
+                            },
+                            justifyContent: {
+                                xs: 'flex-end',
+                            },
+                        }}
+                    >
+                        {replyAuthorId !== idLoggedUser &&
+                            variant === 'reply' && (
+                                <Button
+                                    startIcon={
+                                        <ReplyIcon
+                                            color={
+                                                replyHover
+                                                    ? theme.palette.info.main
+                                                    : theme.palette.secondary
+                                                          .contrastText
+                                            }
+                                        />
+                                    }
+                                    variant="text"
+                                    sx={{
+                                        gap: '5px',
+                                        textTransform: 'none',
+                                        color: theme.palette.secondary
+                                            .contrastText,
+                                        ':hover': {
+                                            bgcolor: 'transparent',
+                                            color: theme.palette.info.main,
+                                        },
+                                    }}
+                                    onMouseEnter={() => setReplyHover(true)}
+                                    onMouseLeave={() => setReplyHover(false)}
+                                    onClick={handleReplyToReplyForm}
+                                >
+                                    {addReply}
+                                </Button>
+                            )}
+                        {authorId !== idLoggedUser && variant === 'comment' && (
+                            <Button
+                                startIcon={
+                                    <ReplyIcon
+                                        color={
+                                            replyHover
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
+                                        }
+                                    />
+                                }
+                                variant="text"
+                                sx={{
+                                    gap: '5px',
+                                    textTransform: 'none',
+                                    color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main,
+                                    },
+                                }}
+                                onClick={handleReplyForm}
+                                onMouseEnter={() => setReplyHover(true)}
+                                onMouseLeave={() => setReplyHover(false)}
+                            >
+                                {addReply}
+                            </Button>
+                        )}
+                        {authorId === idLoggedUser && variant === 'comment' ? (
+                            <Button
+                                variant="text"
+                                onClick={() => setIsOpenModal(true)}
+                                startIcon={
+                                    <DeleteIcon
+                                        color={
+                                            deleteHover
+                                                ? theme.palette.info
+                                                      .contrastText
+                                                : theme.palette.primary
+                                                      .contrastText
+                                        }
+                                    />
+                                }
+                                sx={{
+                                    gap: '5px',
+                                    textTransform: 'none',
+                                    color: theme.palette.primary.contrastText,
+                                    fontSize: '600',
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.contrastText,
+                                    },
+                                }}
+                                type="button"
+                                onMouseEnter={() => setDeleteHover(true)}
+                                onMouseLeave={() => setDeleteHover(false)}
+                            >
+                                {deleteIt}
+                            </Button>
+                        ) : null}
+                        {replyAuthorId === idLoggedUser &&
+                        variant === 'reply' ? (
+                            <Button
+                                variant="text"
+                                onClick={() => setIsOpenModal(true)}
+                                startIcon={
+                                    <DeleteIcon
+                                        color={
+                                            deleteHover
+                                                ? theme.palette.info
+                                                      .contrastText
+                                                : theme.palette.primary
+                                                      .contrastText
+                                        }
+                                    />
+                                }
+                                sx={{
+                                    gap: '5px',
+                                    textTransform: 'none',
+                                    color: theme.palette.primary.contrastText,
+                                    fontSize: '600',
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.contrastText,
+                                    },
+                                }}
+                                type="button"
+                                onMouseEnter={() => setDeleteHover(true)}
+                                onMouseLeave={() => setDeleteHover(false)}
+                            >
+                                {deleteIt}
+                            </Button>
+                        ) : null}
+
+                        {isOpenModal ? (
+                            <DeleteModal
+                                isOpenModal={isOpenModal}
+                                setIsOpenModal={setIsOpenModal}
+                                authorId={authorId}
+                                replyAuthorId={replyAuthorId}
+                                idLoggedUser={idLoggedUser}
+                                variant={variant}
+                                id={id}
+                                replyId={replyId}
+                            />
+                        ) : null}
+
+                        {authorId === idLoggedUser && variant === 'comment' ? (
+                            <Button
+                                startIcon={
+                                    <EditIcon
+                                        color={
+                                            editHover
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
+                                        }
+                                    />
+                                }
+                                variant="text"
+                                sx={{
+                                    gap: '5px',
+                                    textTransform: 'none',
+                                    color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main,
+                                    },
+                                }}
+                                onClick={() => setEditState(!editState)}
+                                onMouseEnter={() => setEditHover(true)}
+                                onMouseLeave={() => setEditHover(false)}
+                            >
+                                {edit}
+                            </Button>
+                        ) : null}
+                        {replyAuthorId === idLoggedUser &&
+                        variant === 'reply' ? (
+                            <StyledButton
+                                startIcon={
+                                    <EditIcon
+                                        color={
+                                            editHover
+                                                ? theme.palette.info.main
+                                                : theme.palette.secondary
+                                                      .contrastText
+                                        }
+                                    />
+                                }
+                                variant="text"
+                                sx={{
+                                    gap: '5px',
+                                    textTransform: 'none',
+                                    color: theme.palette.secondary.contrastText,
+                                    ':hover': {
+                                        bgcolor: 'transparent',
+                                        color: theme.palette.info.main,
+                                    },
+                                }}
+                                onClick={() => setEditState(!editState)}
+                                onMouseEnter={() => setEditHover(true)}
+                                onMouseLeave={() => setEditHover(false)}
+                            >
+                                {edit}
+                            </StyledButton>
+                        ) : null}
+                    </Box>
                 </Box>
             </Box>
         </Card>

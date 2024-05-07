@@ -34,14 +34,27 @@ export default function AddReplyToReply({
         <Card
             sx={{
                 display: 'flex',
-                width: '580px',
+                width: {
+                    md: '620px',
+                    xs: '350px',
+                },
                 py: 3,
                 px: 2,
                 mt: '10px',
                 alignItems: 'flex-start',
             }}
         >
-            <Avatar sx={{ width: 36, height: 36 }} alt="image of author" />
+            <Avatar
+                sx={{
+                    width: 36,
+                    height: 36,
+                    display: {
+                        xs: 'none',
+                        md: 'flex',
+                    },
+                }}
+                alt="image of author"
+            />
             <Box sx={{ alignItems: 'flex-start' }}>
                 <FormControl
                     ref={formRef}
@@ -53,10 +66,16 @@ export default function AddReplyToReply({
                     component="form"
                     sx={{
                         display: 'flex',
-                        flexDirection: 'row',
+                        flexDirection: {
+                            md: 'row',
+                            xs: 'column',
+                        },
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        width: '492px',
+                        width: {
+                            md: '910px',
+                            xs: '300px',
+                        },
                         mx: '12px',
                     }}
                 >
@@ -69,25 +88,63 @@ export default function AddReplyToReply({
                         name="content"
                         defaultValue={`@${nameOfAuthor[0].username}, `}
                     />
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        size="small"
+                    <Box
                         sx={{
-                            pl: 0.5,
-                            bgcolor: theme.palette.secondary.contrastText,
-                            color: theme.palette.primary.light,
-                            fontWeight: '500',
-                            p: 1,
-                            ml: '12px',
-                            alignSelf: 'flex-start',
-                            ':hover': {
-                                bgcolor: theme.palette.info.main,
+                            display: {
+                                xs: 'flex',
+                            },
+                            justifyContent: {
+                                xs: 'space-between',
+                            },
+                            alignItems: {
+                                xs: 'center',
+                            },
+                            width: {
+                                xs: 'inherit',
                             },
                         }}
                     >
-                        {addReply}
-                    </Button>
+                        <Avatar
+                            sx={{
+                                width: 36,
+                                height: 36,
+                                display: {
+                                    xs: 'flex',
+                                    md: 'none',
+                                },
+                                marginTop: {
+                                    xs: '10px',
+                                },
+                            }}
+                            alt="image of author"
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            size="small"
+                            sx={{
+                                pl: 0.5,
+                                bgcolor: theme.palette.secondary.contrastText,
+                                color: theme.palette.primary.light,
+                                fontWeight: '500',
+                                p: 1,
+                                ml: '12px',
+                                mt: {
+                                    md: '0px',
+                                    xs: '10px',
+                                },
+                                alignSelf: {
+                                    md: 'flex-start',
+                                    xs: 'flex-end',
+                                },
+                                ':hover': {
+                                    bgcolor: theme.palette.info.main,
+                                },
+                            }}
+                        >
+                            {addReply}
+                        </Button>
+                    </Box>
                 </FormControl>
             </Box>
         </Card>
