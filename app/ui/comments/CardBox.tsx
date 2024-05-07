@@ -158,8 +158,13 @@ padding: 6px 0 6px 8px;
             <Box
                 display="flex"
                 flexDirection="column"
-                gap="10px"
-                sx={{ width: '100%' }}
+                sx={{
+                    width: '100%',
+                    gap: {
+                        xs: '20px',
+                        md: '10px',
+                    },
+                }}
             >
                 <Box
                     display="flex"
