@@ -12,7 +12,7 @@ import {
 import { revalidatePath } from 'next/cache'
 import prisma from './prisma'
 import { RefObject } from 'react'
-import { signIn } from '@/auth'
+import { signIn, signOut } from '@/auth'
 import { AuthError } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { translations } from '@/constants/translations'
@@ -31,10 +31,10 @@ const FormSchemaForUser = z.object({
     email: z.string().email(),
 })
 
-const CreateUser = FormSchemaForUser.omit({ id: true, createdAt: true })
+const CreateUser = FormSchemaForUser.omit({ id: true })
 
-const CreateComment = FormSchema.omit({ id: true, createdAt: true })
-const CreateReply = FormSchema.omit({ id: true, createdAt: true })
+const CreateComment = FormSchema.omit({ id: true })
+const CreateReply = FormSchema.omit({ id: true })
 
 export async function createNewUser(formData: FormData) {
     const { username, email, password } = CreateUser.parse({
@@ -93,7 +93,7 @@ export async function deleteComment(id: string, variant: string) {
     await removeComment(id, variant)
     revalidatePath('/comments')
 }
-const updateText = FormSchema.omit({ id: true, createdAt: true })
+const updateText = FormSchema.omit({ id: true })
 
 export async function updateContent(
     variant: string,
@@ -114,6 +114,22 @@ export async function authenticate(
 ) {
     try {
         await signIn('credentials', formData)
+    } catch (error) {
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                    return invalidCredentialsText
+                default:
+                    return goWrongText
+            }
+        }
+        throw error
+    }
+}
+
+export async function leave() {
+    try {
+        await signOut()
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {

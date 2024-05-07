@@ -13,6 +13,7 @@ import {
 import CommentsSection from './CommentsSection'
 import AddComment from './AddComment'
 import { signOut } from '@/auth'
+import { leave } from '@/lib/actions'
 
 type MainPageType = {
     idLoggedUser?: string
@@ -74,12 +75,7 @@ export default function MainPage({
                         {helloWord}
                         {nameLoggedUser}
                     </Typography>
-                    <FormControl
-                        action={async () => {
-                            await signOut()
-                        }}
-                        component="form"
-                    >
+                    <FormControl action={leave} component="form">
                         <Button
                             type="submit"
                             variant="contained"

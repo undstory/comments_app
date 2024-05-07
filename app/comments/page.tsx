@@ -1,11 +1,7 @@
 import { fetchComments, fetchReplies, fetchUser, fetchUsers } from '@/lib/data'
-import Card from '../ui/comments/SingleComment'
-import AddComment from '../ui/comments/AddComment'
-import { Comment, User } from '@/lib/types'
-import CommentsSection from '../ui/comments/CommentsSection'
-import { auth, signOut } from '@/auth'
-import { translations } from '@/constants/translations'
-import { Box, Button, Container, FormControl, Typography } from '@mui/material'
+
+import { auth } from '@/auth'
+
 import MainPage from '../ui/comments/MainPage'
 
 export default async function Page() {
